@@ -11,13 +11,13 @@ namespace DDetective.Controllers
     {
 
         //EVENT DATABASE
-        private EventDbContext eventContext;
+       // private EventDbContext eventContext;
 
 
-        public AddEventController(EventDbContext dbContext)
-        {
-            eventContext = dbContext;
-        }
+        //public AddEventController(EventDbContext dbContext)
+        //{
+        //    eventContext = dbContext;
+        //}
 
         [HttpGet]
         [Route("/Index")]
