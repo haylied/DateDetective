@@ -7,6 +7,7 @@ namespace DDetective.ViewModels
     public class AddEventViewModel
     {
         [Key]
+        [Required(ErrorMessage)]
         public int EventId { get; set; }
         public string EventName { get; set; }
         public string EventDescription { get; set; }
