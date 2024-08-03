@@ -11,12 +11,15 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-DDetective-c20e12ae-67fa-4c47-ae4c-4711a6b55763")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("DDetective")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6c600f132384fc8d2c59d5e490b8e64440379ef")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+>>>>>>> 06fa13cf166db41779d0c731578d1a16b5eaf19a
 [assembly: System.Reflection.AssemblyProductAttribute("DDetective")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DDetective")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
