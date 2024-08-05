@@ -8,10 +8,10 @@ namespace DDetective
     {
         public static void Main(string[] args)
         {
+
             //CORS
             var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-            /////
-
+            
             var builder = WebApplication.CreateBuilder(args);
 
             //CORS
@@ -25,7 +25,6 @@ namespace DDetective
                                                 .AllowAnyMethod();
                                       });
             });
-            /////
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -58,7 +57,6 @@ namespace DDetective
 
             //CORS
             app.UseCors(MyAllowSpecificOrigins);
-            /////
 
             app.UseAuthentication();
             app.UseAuthorization();
