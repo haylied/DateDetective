@@ -19,7 +19,7 @@ namespace DDetective.Controllers
         //    eventContext = dbContext;
         //}
 
-        [HttpGet]
+        /*[HttpGet]
         [Route("/Index")]
         public ActionResult Index()
         {
@@ -143,6 +143,6 @@ namespace DDetective.Controllers
 
             // If Event Not Present, Return Not Found 404
             return NotFound();
-        }
+        }*/
     }
 }

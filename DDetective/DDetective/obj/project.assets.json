@@ -2459,11 +2459,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hayli\\OneDrive\\Desktop\\DDTest\\DDetective\\DDetective\\DDetective.csproj",
+      "projectUniqueName": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetectiveProj\\DDetective\\DDetective\\DDetective.csproj",
       "projectName": "DDetective",
-      "projectPath": "C:\\Users\\hayli\\OneDrive\\Desktop\\DDTest\\DDetective\\DDetective\\DDetective.csproj",
+      "projectPath": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetectiveProj\\DDetective\\DDetective\\DDetective.csproj",
       "packagesPath": "C:\\Users\\hayli\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hayli\\OneDrive\\Desktop\\DDTest\\DDetective\\DDetective\\obj\\",
+      "outputPath": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetectiveProj\\DDetective\\DDetective\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hayli\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2486,11 +2486,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2537,7 +2532,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
