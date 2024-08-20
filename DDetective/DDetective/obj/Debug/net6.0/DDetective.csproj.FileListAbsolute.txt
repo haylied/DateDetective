@@ -85,3 +85,6 @@ C:\Users\hayli\OneDrive\Desktop\DateDetectiveProj\DDetective\DDetective\obj\Debu
 C:\Users\hayli\OneDrive\Desktop\DateDetectiveProj\DDetective\DDetective\obj\Debug\net6.0\DDetective.pdb
 C:\Users\hayli\OneDrive\Desktop\DateDetectiveProj\DDetective\DDetective\obj\Debug\net6.0\DDetective.genruntimeconfig.cache
 C:\Users\hayli\OneDrive\Desktop\DateDetectiveProj\DDetective\DDetective\obj\Debug\net6.0\ref\DDetective.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetectiveProject\DDetective\DDetective\obj\Debug\net6.0\DDetective.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetectiveProject\DDetective\DDetective\obj\Debug\net6.0\refint\DDetective.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetectiveProject\DDetective\DDetective\obj\Debug\net6.0\DDetective.pdb
