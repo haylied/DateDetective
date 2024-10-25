@@ -5,7 +5,7 @@ using DDetective.Data;
 
 namespace DDetective.Controllers
  {
-    [ApiController]
+  /*  [ApiController]
     [Route("[controller]")]
     public class AddEventController : Controller
     {
@@ -144,5 +144,5 @@ namespace DDetective.Controllers
             // If Event Not Present, Return Not Found 404
             return NotFound();
         }
-    }
+    }*/
 }
