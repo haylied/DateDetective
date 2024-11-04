@@ -16,7 +16,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DDetective")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a815bb54a80f48a97f67a14706d3be8b8d7d7814")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c028057346e3ddffe1a603392ef30f2da2894f2")]
+>>>>>>> Enable_CORS
 [assembly: System.Reflection.AssemblyProductAttribute("DDetective")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DDetective")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
