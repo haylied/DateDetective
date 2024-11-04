@@ -16,7 +16,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DDetective")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a815bb54a80f48a97f67a14706d3be8b8d7d7814")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f92eec1bc43cd7ceb22883a86f8db5a6d81f0374")]
+>>>>>>> 3ff3b1a2dfa767f67d38bd4173d3971597753efb
 [assembly: System.Reflection.AssemblyProductAttribute("DDetective")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DDetective")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
