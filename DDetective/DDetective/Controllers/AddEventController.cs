@@ -5,19 +5,19 @@ using DDetective.Data;
 
 namespace DDetective.Controllers
  {
-    [ApiController]
+  /*  [ApiController]
     [Route("[controller]")]
     public class AddEventController : Controller
     {
 
         //EVENT DATABASE
-        private EventDbContext eventContext;
+       // private EventDbContext eventContext;
 
 
-        public AddEventController(EventDbContext dbContext)
-        {
-            eventContext = dbContext;
-        }
+        //public AddEventController(EventDbContext dbContext)
+        //{
+        //    eventContext = dbContext;
+        //}
 
         [HttpGet]
         [Route("/Index")]
@@ -144,5 +144,5 @@ namespace DDetective.Controllers
             // If Event Not Present, Return Not Found 404
             return NotFound();
         }
-    }
+    }*/
 }

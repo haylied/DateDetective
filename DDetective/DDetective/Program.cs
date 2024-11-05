@@ -1,5 +1,4 @@
 using DDetective.Data;
-using 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +8,23 @@ namespace DDetective
     {
         public static void Main(string[] args)
         {
+
+            //CORS
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+            
             var builder = WebApplication.CreateBuilder(args);
+
+            //CORS
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                                      policy =>
+                                      {
+                                          policy.AllowAnyOrigin()
+                                                .AllowAnyHeader()
+                                                .AllowAnyMethod();
+                                      });
+            });
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -39,6 +54,9 @@ namespace DDetective
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            //CORS
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthentication();
             app.UseAuthorization();
