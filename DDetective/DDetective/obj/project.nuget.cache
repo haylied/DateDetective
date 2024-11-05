@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TELSY6Sbzj1dnwo5iR54rmj55AiJ/r3rCx0jZzxFLt2DRHNzVszM5XLo/4AgSkZOLM43RJjOLLsUidzTzyF70A==",
+  "dgSpecHash": "pzi+yx3ZEns=",
   "success": true,
-  "projectFilePath": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetectiveProject\\DDetective\\DDetective\\DDetective.csproj",
+  "projectFilePath": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetectiveProj\\DDetective\\DDetective\\DDetective.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hayli\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\hayli\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
@@ -85,7 +85,7 @@
     "C:\\Users\\hayli\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512",
     "C:\\Users\\hayli\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
     "C:\\Users\\hayli\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
-    "C:\\Users\\hayli\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
+    "C:\\Users\\hayli\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
     "C:\\Users\\hayli\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\hayli\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
