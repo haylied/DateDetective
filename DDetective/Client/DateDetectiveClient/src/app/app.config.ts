@@ -8,3 +8,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideAnimationsAsync()]
 };
+
+export const AppConfig = {
+  apiUrl: 'https://api.example.com', //server URL
+  appName: 'Event Manager',
+  version: '1.0.0',
+};
