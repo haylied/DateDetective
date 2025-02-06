@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { EventFormComponent } from './event-form/event-form.component';  
+import { EventFormComponent } from './components/event-form/event-form.component';  
+import { UserAccountComponent } from './components/user-accounts/user-accounts.component';
 
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
+  //standalone: true,
+  imports: [RouterOutlet, EventFormComponent, UserAccountComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 
 export class AppComponent {
-  title = 'DateDetectiveClient';
+  //title = 'DateDetectiveClient';
 }
 
 // @Component({

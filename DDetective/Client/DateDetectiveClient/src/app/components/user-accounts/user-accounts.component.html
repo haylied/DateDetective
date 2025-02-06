@@ -1,0 +1,51 @@
+<div class="user-account">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <!-- Username Field -->
+      <div>
+        <label for="username">Username:</label>
+        <input id="username" formControlName="username" />
+        <div *ngIf="submitted && userForm.controls.username.errors">
+          <small *ngIf="userForm.controls.username.errors.required">
+            Username is required.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Email Field -->
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email" />
+        <div *ngIf="submitted && userForm.controls.email.errors">
+          <small *ngIf="userForm.controls.email.errors.required">
+            Email is required.
+          </small>
+          <small *ngIf="userForm.controls.email.errors.email">
+            Please enter a valid email address.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Password Field -->
+      <div>
+        <label for="password">Password:</label>
+        <input id="password" formControlName="password" type="password" />
+        <div *ngIf="submitted && userForm.controls.password.errors">
+          <small *ngIf="userForm.controls.password.errors.required">
+            Password is required.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit">Create Account</button>
+    </form>
+  
+    <!-- Success and Error Messages -->
+    <div *ngIf="successMessage" class="success">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+  </div>
+  
