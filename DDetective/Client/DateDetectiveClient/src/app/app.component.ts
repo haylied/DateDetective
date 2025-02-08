@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { EventFormComponent } from './components/event-form/event-form.component';  
-import { UserAccountComponent } from './components/user-accounts/user-accounts.component';
+import { UserAccountsComponent } from './components/user-accounts/user-accounts.component';
 
 
 @Component({
   selector: 'app-root',
   //standalone: true,
-  imports: [RouterOutlet, EventFormComponent, UserAccountComponent],
+  imports: [CommonModule, EventFormComponent, UserAccountsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

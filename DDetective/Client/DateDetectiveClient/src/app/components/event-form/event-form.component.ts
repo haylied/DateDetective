@@ -77,8 +77,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-event-form',
+  standalone: true,
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.scss']
+
 })
 export class EventFormComponent implements OnInit {
   eventForm: FormGroup;

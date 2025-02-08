@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service'; // Make sure you create and configure this service
 
 @Component({
-  selector: 'app-user-account',
-  templateUrl: './user-account.component.html',
-  styleUrls: ['./user-account.component.css']
+  selector: 'app-user-accounts',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './user-accounts.component.html',
+  styleUrls: ['./user-accounts.component.css']
 })
 
-export class UserAccountComponent implements OnInit {
+export class UserAccountsComponent implements OnInit {
   userForm!: FormGroup;
   submitted = false;
   successMessage: string = '';
