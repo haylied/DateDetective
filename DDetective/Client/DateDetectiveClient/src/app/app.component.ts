@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { EventFormComponent } from './components/event-form/event-form.component';  
 import { UserAccountsComponent } from './components/user-accounts/user-accounts.component';
+//import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-root',
-  //standalone: true,
+  standalone: true,
   imports: [CommonModule, EventFormComponent, UserAccountsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

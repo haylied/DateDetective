@@ -8,7 +8,7 @@ import { UserService } from '../../services/user.service'; // Make sure you crea
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './user-accounts.component.html',
-  styleUrls: ['./user-accounts.component.css']
+  styleUrls: ['./user-accounts.component.scss']
 })
 
 export class UserAccountsComponent implements OnInit {

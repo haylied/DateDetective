@@ -1,8 +1,8 @@
-<!-- src/app/event-form/event-form.component.html
+<!--src/app/event-form/event-form.component.html --> 
 <div class="event-form-container">
     <h1>{{ appName }} Event Form</h1>
     
-    <form [formGroup]="eventForm" (ngSubmit)="submitForm()">
+    <form >
       <label for="eventName">Event Title</label>
       <input id="eventName" formControlName="eventName" type="text" />
   
@@ -21,76 +21,9 @@
       <label for="endTime">End Time</label>
       <input id="endTime" formControlName="endTime" type="time" />
   
-      <button type="submit" [disabled]="!eventForm.valid">Submit</button>
+      <button type="submit" >Submit</button>
     </form>
 </div>
-   -->
+  
 
-   <div class="event-form-container">
-    <h1>{{ appName }} Event Form</h1>
-    <form [formGroup]="eventForm" (ngSubmit)="submitForm()">
-  
-      <!-- Event Name -->
-      <mat-form-field appearance="fill">
-        <mat-label>Event Name</mat-label>
-        <input matInput formControlName="eventName" type="text">
-        <mat-error *ngIf="eventForm.get('eventName')?.hasError('required')">
-          Event Name is required.
-        </mat-error>
-        <mat-error *ngIf="eventForm.get('eventName')?.hasError('minlength')">
-          Minimum 3 characters required.
-        </mat-error>
-      </mat-form-field>
-  
-      <!-- Event Description -->
-      <mat-form-field appearance="fill">
-        <mat-label>Event Description</mat-label>
-        <textarea matInput formControlName="eventDescription"></textarea>
-        <mat-error *ngIf="eventForm.get('eventDescription')?.hasError('required')">
-          Event Description is required.
-        </mat-error>
-      </mat-form-field>
-  
-      <!-- Start Date & Time -->
-      <mat-form-field appearance="fill">
-        <mat-label>Start Date & Time</mat-label>
-        <input matInput 
-               [ngxMatDatetimePicker]="startPicker" 
-               placeholder="Choose start date and time" 
-               formControlName="startDateTime">
-        <ngx-mat-datetime-picker 
-               #startPicker 
-               [stepMinute]="5" 
-               [showSpinners]="true">
-        </ngx-mat-datetime-picker>
-        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-        <mat-error *ngIf="eventForm.get('startDateTime')?.hasError('required')">
-          Start Date & Time is required.
-        </mat-error>
-      </mat-form-field>
-  
-      <!-- End Date & Time -->
-      <mat-form-field appearance="fill">
-        <mat-label>End Date & Time</mat-label>
-        <input matInput 
-               [ngxMatDatetimePicker]="endPicker" 
-               placeholder="Choose end date and time" 
-               formControlName="endDateTime">
-        <ngx-mat-datetime-picker 
-               #endPicker 
-               [stepMinute]="5" 
-               [showSpinners]="true">
-        </ngx-mat-datetime-picker>
-        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-        <mat-error *ngIf="eventForm.get('endDateTime')?.hasError('required')">
-          End Date & Time is required.
-        </mat-error>
-      </mat-form-field>
-  
-      <!-- Submit Button -->
-      <button mat-raised-button color="primary" type="submit" [disabled]="!eventForm.valid">
-        Submit
-      </button>
-    </form>
-  </div>
-  
+ 
