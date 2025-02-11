@@ -84,10 +84,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class EventFormComponent implements OnInit {
   eventForm: FormGroup;
-  appName = 'MyApp';
+  appName = 'DateDetective';
 
   constructor(private fb: FormBuilder) {
-    // Form controls: note that startDateTime and endDateTime are each one control
+    // Form controls: note  startDateTime and endDateTime are each one control
     this.eventForm = this.fb.group({
       eventName: ['', [Validators.required, Validators.minLength(3)]],
       eventDescription: ['', Validators.required],
@@ -101,7 +101,7 @@ export class EventFormComponent implements OnInit {
   submitForm(): void {
     if (this.eventForm.valid) {
       console.log(this.eventForm.value);
-      // pass a unified datetime value for start and end to your API
+      // pass a unified datetime value for start and end to API
     }
   }
 }
