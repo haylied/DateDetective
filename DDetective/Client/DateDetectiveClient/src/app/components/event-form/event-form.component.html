@@ -1,0 +1,29 @@
+<!--src/app/event-form/event-form.component.html --> 
+<div class="event-form-container">
+    <h1>{{ appName }} Event Form</h1>
+    
+    <form >
+      <label for="eventName">Event Title</label>
+      <input id="eventName" formControlName="eventName" type="text" />
+  
+      <label for="eventDescription">Event Description</label>
+      <textarea id="eventDescription" formControlName="eventDescription"></textarea>
+  
+      <label for="startDate">Start Date</label>
+      <input id="startDate" formControlName="startDate" type="date" />
+
+      <label for="startTime">Start Time</label>
+      <input id="startTime" formControlName="startTime" type="time" />
+  
+      <label for="endDate">End Date</label>
+      <input id="endDate" formControlName="endDate" type="date" />
+
+      <label for="endTime">End Time</label>
+      <input id="endTime" formControlName="endTime" type="time" />
+  
+      <button type="submit" >Submit</button>
+    </form>
+</div>
+  
+
+ 
