@@ -421,3 +421,15 @@ C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\obj\D
 C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\obj\Debug\net8.0\DDetective.pdb
 C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\obj\Debug\net8.0\DDetective.genruntimeconfig.cache
 C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\obj\Debug\net8.0\ref\DDetective.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\bin\Debug\net8.0\Npgsql.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\hayli\OneDrive\Desktop\DateDetective\DDetective\Server\DDetective\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll

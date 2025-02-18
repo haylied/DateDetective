@@ -8,32 +8,34 @@ namespace DDetective
     {
         public static void Main(string[] args)
         {
-
-            //CORS
+            // Define the CORS policy name.
             var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-            
+
             var builder = WebApplication.CreateBuilder(args);
 
-            //CORS
+            // Configure CORS to allow any origin, header, and method.
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,
-                                      policy =>
-                                      {
-                                          policy.AllowAnyOrigin()
-                                                .AllowAnyHeader()
-                                                .AllowAnyMethod();
-                                      });
+                    policy =>
+                    {
+                        policy.AllowAnyOrigin()
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                    });
             });
 
-            // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+
+           // builder.Services.AddDbContext<EventDbContext>(options =>
+              //  options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
+
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            // Set up Identity using ApplicationDbContext.
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
@@ -46,7 +48,6 @@ namespace DDetective
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -55,7 +56,7 @@ namespace DDetective
 
             app.UseRouting();
 
-            //CORS
+            // Enable CORS middleware.
             app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthentication();
