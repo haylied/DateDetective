@@ -28,6 +28,13 @@ namespace DDetective.ViewModels
         [Required]
         public DateTime EndDateTime { get; set; }
 
+        // !-- Adding New Fields --!
+
+        //public int OriginatorId {  get; set; } // same as userId
+
+        //public string OriginatorName { get; set; } // get value from userId key
+
+        //public List<int> Attendees { get; set; } // list of userIds attending meeting
 
 
         public AddEventViewModel()
