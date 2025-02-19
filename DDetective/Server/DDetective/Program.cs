@@ -26,15 +26,15 @@ namespace DDetective
             });
 
 
-           // builder.Services.AddDbContext<EventDbContext>(options =>
-              //  options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
+            builder.Services.AddDbContext<EventDbContext>(options =>
+                options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
 
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             // Set up Identity using ApplicationDbContext.
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            // builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddControllersWithViews();
 
