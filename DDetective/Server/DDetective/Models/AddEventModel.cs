@@ -64,7 +64,11 @@ namespace DDetective.Models
         public string EventDescription { get; set; }
 
         public DateTime StartDateTime { get; set; }
+<<<<<<< HEAD
    
+=======
+
+>>>>>>> 3eafb7480b5cd92057fc24086a37f634dc93db7c
         public DateTime EndDateTime { get; set; }
 
         // !-- Adding New Fields --!
