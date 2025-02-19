@@ -8,17 +8,31 @@ namespace DDetective.ViewModels
     {
         [Key]
         public int EventId { get; set; }
+
+        [Required]
+        [MinLength(3)]
         public string EventName { get; set; }
+
+        [Required]
         public string EventDescription { get; set; }
         // public string EventCategory { get; set; }
         // public string EventType { get; set; }
-        public DateTime DateStart { get; set; }
-        public DateTime DateEnd { get; set; }
-        public DateTime TimeStart { get; set; }
-        public DateTime TimeEnd { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
+        [Required]
+        public DateTime StartDateTime { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
+        [Required]
+        public DateTime EndDateTime { get; set; }
+
+
 
         public AddEventViewModel()
         {
+
         }
     }
 }
