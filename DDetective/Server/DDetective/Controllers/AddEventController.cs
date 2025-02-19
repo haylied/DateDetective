@@ -1,4 +1,4 @@
-﻿using DDetective.Models;
+﻿/*using DDetective.Models;
 using Microsoft.AspNetCore.Mvc;
 using DDetective.ViewModels;
 using DDetective.Data;
@@ -144,5 +144,5 @@ namespace DDetective.Controllers
             // If Event Not Present, Return Not Found 404
             return NotFound();
         }
-    }*/
-}
+    }
+}*/

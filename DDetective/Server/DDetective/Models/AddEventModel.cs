@@ -59,23 +59,21 @@ namespace DDetective.Models
         [Key]
         public int EventId { get; set; }
 
-        [Required]
-        [MinLength(3)]
         public string EventName { get; set; }
 
-        [Required]
         public string EventDescription { get; set; }
 
-        // Combined DateTime fields for start and end
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
-        [Required]
         public DateTime StartDateTime { get; set; }
-
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
-        [Required]
+   
         public DateTime EndDateTime { get; set; }
+
+        // !-- Adding New Fields --!
+
+        public int Originator {  get; set; }
+
+        public string OriginatorName { get; set; }
+
+        //public List<int> Attendees { get; set; }
 
         public AddEventModel() { }
 
@@ -86,6 +84,8 @@ namespace DDetective.Models
             EventDescription = eventDescription;
             StartDateTime = startDateTime;
             EndDateTime = endDateTime;
+            //Originator = originator;
+            //OriginatorName = originatorName;
         }
     }
 }
