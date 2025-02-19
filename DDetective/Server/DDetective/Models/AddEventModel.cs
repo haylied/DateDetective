@@ -69,11 +69,11 @@ namespace DDetective.Models
 
         // !-- Adding New Fields --!
 
-        public int Originator {  get; set; }
+        //public int OriginatorId {  get; set; } // same as userId
 
-        public string OriginatorName { get; set; }
+        //public string OriginatorName { get; set; } // get value from userId key
 
-        //public List<int> Attendees { get; set; }
+        //public List<int> Attendees { get; set; } // list of userIds attending meeting
 
         public AddEventModel() { }
 
@@ -84,7 +84,7 @@ namespace DDetective.Models
             EventDescription = eventDescription;
             StartDateTime = startDateTime;
             EndDateTime = endDateTime;
-            //Originator = originator;
+            //OriginatorId = originatorId;
             //OriginatorName = originatorName;
         }
     }
