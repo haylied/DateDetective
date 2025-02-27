@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DDetective")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3b253912ed49206842c9462bb1f735ebf47d452")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3fef2cea9a7276c63600b5ae482a82070f08126")]
 [assembly: System.Reflection.AssemblyProductAttribute("DDetective")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DDetective")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

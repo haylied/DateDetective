@@ -20,7 +20,7 @@ namespace DDetective.Controllers
 
         [HttpGet]
         [Route("/Index")]
-        public ActionResult Index()
+        public IActionResult Index()
         {
             List<AddEventModel> events = eventContext.Events?.ToList();
             return View(events);
