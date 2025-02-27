@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace DDetective.Models
@@ -11,7 +12,6 @@ namespace DDetective.Models
         public string LastName { get; set; }
         public string EmailConfirmed { get; set; }
         public DateTime AccountCreationDate { get; set; } = DateTime.Now;
-
 
         public ApplicationUser()
         {
