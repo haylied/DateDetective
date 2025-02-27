@@ -14,32 +14,46 @@ namespace DDetective.ViewModels
         public string EventName { get; set; }
 
         [Required]
-        public string EventDescription { get; set; }
-        // public string EventCategory { get; set; }
-        // public string EventType { get; set; }
+        public string EventDescription { get; set; }}
+
+        public bool AllDayEvent { get; set; }
 
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required]
-        public DateTime StartDateTime { get; set; }
+        public DateTime StartDate { get; set; }
 
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required]
-        public DateTime EndDateTime { get; set; }
+        public DateTime StartTime { get; set; }
 
-        // !-- Adding New Fields --!
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Required]
+        public DateTime EndDate { get; set; }
 
-        //public int OriginatorId {  get; set; } // same as userId
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Required]
+        public DateTime StartTime { get; set; }
 
-        //public string OriginatorName { get; set; } // get value from userId key
 
-        //public List<int> Attendees { get; set; } // list of userIds attending meeting
+         public AddEventViewModel()
+         {
 
+         }
 
-        public AddEventViewModel()
-        {
-
-        }
-    }
+         public AddEventViewModel(int eventId, string eventName, string eventDescription, DateTime startDate, DateTime startTime, DateTime endDate, DateTime endTime, int eventOriginatorId)
+         {
+            AddEventViewModel.EventId = eventId;
+            EventName = eventName;
+            EventDescription = eventDescription;
+            AllDayEvent = false;
+            StartDate = startDate;
+            StartTime = startTime;
+            EndDate = endDate;
+            EndTime = endTime;
+            EventOriginatorId = eventOriginatorId;
+         }
 }

@@ -1,6 +1,7 @@
-//using DDetective.Data;
+using DDetective.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using DDetective.Areas.Identity.Data;
 
 namespace DDetective
 {
@@ -28,6 +29,8 @@ namespace DDetective
 
             builder.Services.AddDbContext<EventDbContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<DDetectiveIdentityDbContext>();
 
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
