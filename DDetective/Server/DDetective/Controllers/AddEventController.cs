@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using DDetective.ViewModels;
 using DDetective.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DDetective.Controllers
  {
@@ -66,13 +67,13 @@ namespace DDetective.Controllers
                 // If it's an all-day event, override times to cover the full day
                 if (addEventViewModel.AllDayEvent)
                 {
-                    addEventModel.StartTime = addEventViewModel.StartTime.Date, // Sets to 00:00:00, I hope
-                    addEventModel.EndTime = addEventViewModel.EndTime.Date.AddHours(23).AddMinutes(59).AddSeconds(59) // Sets to 23:59:59
+                    addEventModel.StartTime = addEventViewModel.StartTime.Date; // Sets to 00:00:00, I hope
+                    addEventModel.EndTime = addEventViewModel.EndTime.Date.AddHours(23).AddMinutes(59).AddSeconds(59); // Sets to 23:59:59
                 }
 
 
                 await eventContext.Events.AddAsync(addEventModel);
-                await eventContext.SaveChangesAsyn();
+                await eventContext.SaveChangesAsync();
 
                 return Redirect("CreateEvent");
             }
@@ -178,7 +179,7 @@ namespace DDetective.Controllers
 
                 await eventContext.SaveChangesAsync();
 
-                return NoContent(); */
+                return NoContent(); 
         }
 
 
@@ -192,7 +193,7 @@ namespace DDetective.Controllers
             var anEvent = await eventContext.Events.FirstOrDefaultAsync(x => x.EventId == id);
 
             // If Event Not Present, Return Not Found 404
-            if (anEvent = null)
+            if (anEvent == null)
             {
                 return NotFound();
             }
