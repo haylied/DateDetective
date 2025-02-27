@@ -38,16 +38,16 @@ namespace DDetective.Controllers
             {
                 SessionModel sessionModel = new SessionModel
                 {
-                    SessionId = sessionViewModel.SessionId;
-                    SessionName = sessionViewModel.SessionName;
-                    SessionToken = sessionViewModel.SessionToken;
-                    ExpirationDate = sessionViewModel.ExpirationDate;
-                }
+                    SessionId = sessionViewModel.SessionId,
+                    SessionName = sessionViewModel.SessionName,
+                    SessionToken = sessionViewModel.SessionToken,
+                    ExpirationDate = sessionViewModel.ExpirationDate
+                };
 
                 await sessionContext.Session.AddAsync(sessionModel);
                 await sessionContext.SaveChangesAsync();
 
-                return Redirect("CreateSession")
+                return Redirect("CreateSession");
             }
         }
 
