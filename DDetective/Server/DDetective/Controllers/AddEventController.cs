@@ -1,11 +1,11 @@
-﻿/*using DDetective.Models;
+﻿using DDetective.Models;
 using Microsoft.AspNetCore.Mvc;
 using DDetective.ViewModels;
 using DDetective.Data;
 
 namespace DDetective.Controllers
  {
-  /*  [ApiController]
+    [ApiController]
     [Route("[controller]")]
     public class AddEventController : Controller
     {
@@ -145,4 +145,4 @@ namespace DDetective.Controllers
             return NotFound();
         }
     }
-}*/
+}
