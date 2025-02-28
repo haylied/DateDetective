@@ -11,8 +11,8 @@ namespace DDetective.ViewModels
         [Required]
         public string SessionName { get; set; }
         public string SessionToken { get; set; }
-        public DateTime Exirpation {  get; set; }
+        public DateTime ExpirationDate {  get; set; }
 
-        public SessionView () { }
+        public SessionViewModel () { }
     }
 }

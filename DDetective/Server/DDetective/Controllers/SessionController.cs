@@ -32,7 +32,7 @@ namespace DDetective.Controllers
         }
 
         [HttpPost]
-        public async IActionResult CreateSession(SessionViewModel sessionViewModel)
+        public async Task<IActionResult> CreateSession(SessionViewModel sessionViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -49,12 +49,14 @@ namespace DDetective.Controllers
 
                 return Redirect("CreateSession");
             }
+
+            return View();
         }
 
         [HttpPut]
-        public async IActionResult EditSession(int id, SessionViewModel sessionViewModel)
+        public async Task<IActionResult> EditSession(int id, SessionViewModel sessionViewModel)
         {
-            var existingSession = await sessionContext.Session.FirstorDefaultAsync(x => x.SessionId == id);
+            var existingSession = await sessionContext.Session.FirstOrDefaultAsync(x => x.SessionId == id);
 
             if (existingSession == null)
             {
@@ -69,16 +71,16 @@ namespace DDetective.Controllers
         }
 
         [HttpDelete]
-        public async IActionResult DeleteSession(int id)
+        public async Task<IActionResult> DeleteSession(int id)
         {
-            var session = await sessionContext.Session.FirstorDefaultAsync(x => x.SessionId == id);
+            var session = await sessionContext.Session.FirstOrDefaultAsync(x => x.SessionId == id);
 
             if (session == null)
             {
                 return NotFound();
             }
 
-            await sessionContext.Session.RemoveAsync(session);
+            sessionContext.Remove(session);
             await sessionContext.SaveChangesAsync();
 
             return NoContent();
