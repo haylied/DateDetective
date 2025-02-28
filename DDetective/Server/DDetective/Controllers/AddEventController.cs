@@ -199,7 +199,7 @@ namespace DDetective.Controllers
             }
 
             // If Event Present, Delete Event and Save Changes, Return No Content 
-            await eventContext.Remove(anEvent);
+            eventContext.Remove(anEvent);
             await eventContext.SaveChangesAsync();
 
             return NoContent();
