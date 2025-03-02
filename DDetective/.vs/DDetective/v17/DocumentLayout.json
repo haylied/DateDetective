@@ -3,16 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{20F3A096-B625-4FC5-9C0F-73F25D83B1A4}|DDetective\\DDetective.csproj|c:\\users\\hayli\\onedrive\\desktop\\datedetective\\ddetective\\ddetective\\models\\addeventmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{20F3A096-B625-4FC5-9C0F-73F25D83B1A4}|DDetective\\DDetective.csproj|solutionrelative:ddetective\\models\\addeventmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Controllers\\SessionController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Server\\DDetective\\Controllers\\SessionController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{20F3A096-B625-4FC5-9C0F-73F25D83B1A4}|DDetective\\DDetective.csproj|c:\\users\\hayli\\onedrive\\desktop\\datedetective\\ddetective\\ddetective\\controllers\\addeventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{20F3A096-B625-4FC5-9C0F-73F25D83B1A4}|DDetective\\DDetective.csproj|solutionrelative:ddetective\\controllers\\addeventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Models\\SessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Server\\DDetective\\Models\\SessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{20F3A096-B625-4FC5-9C0F-73F25D83B1A4}|DDetective\\DDetective.csproj|c:\\users\\hayli\\onedrive\\desktop\\datedetective\\ddetective\\ddetective\\viewmodels\\addeventviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{20F3A096-B625-4FC5-9C0F-73F25D83B1A4}|DDetective\\DDetective.csproj|solutionrelative:ddetective\\viewmodels\\addeventviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Controllers\\AddEventController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Server\\DDetective\\Controllers\\AddEventController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\ViewModels\\SessionViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Server\\DDetective\\ViewModels\\SessionViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Data\\SessionDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Server\\DDetective\\Data\\SessionDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\ViewModels\\AddEventViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Server\\DDetective\\ViewModels\\AddEventViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Data\\EventDbContext.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Server\\DDetective\\Data\\EventDbContext.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\DDetective.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Server\\DDetective\\DDetective.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Models\\AddEventModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Server\\DDetective\\Models\\AddEventModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Server\\DDetective\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Models\\ApplicationUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Server\\DDetective\\Models\\ApplicationUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,8 +53,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "DockedWidth": 148,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -31,10 +63,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Bookmark",
@@ -49,46 +77,156 @@
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddEventViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\DDetective\\ViewModels\\AddEventViewModel.cs",
-              "RelativeDocumentMoniker": "DDetective\\ViewModels\\AddEventViewModel.cs",
-              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\DDetective\\ViewModels\\AddEventViewModel.cs",
-              "RelativeToolTip": "DDetective\\ViewModels\\AddEventViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAABAAAA",
+              "DocumentIndex": 8,
+              "Title": "AddEventModel.cs",
+              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Models\\AddEventModel.cs",
+              "RelativeDocumentMoniker": "Server\\DDetective\\Models\\AddEventModel.cs",
+              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Models\\AddEventModel.cs",
+              "RelativeToolTip": "Server\\DDetective\\Models\\AddEventModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T00:54:51.583Z"
+              "WhenOpened": "2025-02-20T21:26:26.689Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AddEventController.cs",
-              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\DDetective\\Controllers\\AddEventController.cs",
-              "RelativeDocumentMoniker": "DDetective\\Controllers\\AddEventController.cs",
-              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\DDetective\\Controllers\\AddEventController.cs",
-              "RelativeToolTip": "DDetective\\Controllers\\AddEventController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAlAAAAAAAAAA==",
+              "Title": "SessionModel.cs",
+              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Models\\SessionModel.cs",
+              "RelativeDocumentMoniker": "Server\\DDetective\\Models\\SessionModel.cs",
+              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Models\\SessionModel.cs",
+              "RelativeToolTip": "Server\\DDetective\\Models\\SessionModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T00:53:14.933Z",
+              "WhenOpened": "2025-02-27T20:09:38.981Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AddEventViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\ViewModels\\AddEventViewModel.cs",
+              "RelativeDocumentMoniker": "Server\\DDetective\\ViewModels\\AddEventViewModel.cs",
+              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\ViewModels\\AddEventViewModel.cs",
+              "RelativeToolTip": "Server\\DDetective\\ViewModels\\AddEventViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T16:16:12.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DDetective.csproj",
+              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\DDetective.csproj",
+              "RelativeDocumentMoniker": "Server\\DDetective\\DDetective.csproj",
+              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\DDetective.csproj",
+              "RelativeToolTip": "Server\\DDetective\\DDetective.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-02-18T19:23:32.096Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AddEventController.cs",
+              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Controllers\\AddEventController.cs",
+              "RelativeDocumentMoniker": "Server\\DDetective\\Controllers\\AddEventController.cs",
+              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Controllers\\AddEventController.cs",
+              "RelativeToolTip": "Server\\DDetective\\Controllers\\AddEventController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAAEAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-19T21:14:13.254Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Program.cs",
+              "RelativeDocumentMoniker": "Server\\DDetective\\Program.cs",
+              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Program.cs",
+              "RelativeToolTip": "Server\\DDetective\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-18T19:23:33.312Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 252,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SessionDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Data\\SessionDbContext.cs",
+              "RelativeDocumentMoniker": "Server\\DDetective\\Data\\SessionDbContext.cs",
+              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Data\\SessionDbContext.cs",
+              "RelativeToolTip": "Server\\DDetective\\Data\\SessionDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T23:50:05.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SessionViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\ViewModels\\SessionViewModel.cs",
+              "RelativeDocumentMoniker": "Server\\DDetective\\ViewModels\\SessionViewModel.cs",
+              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\ViewModels\\SessionViewModel.cs",
+              "RelativeToolTip": "Server\\DDetective\\ViewModels\\SessionViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T23:44:43.13Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AddEventModel.cs",
-              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\DDetective\\Models\\AddEventModel.cs",
-              "RelativeDocumentMoniker": "DDetective\\Models\\AddEventModel.cs",
-              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\DDetective\\Models\\AddEventModel.cs",
-              "RelativeToolTip": "DDetective\\Models\\AddEventModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Title": "SessionController.cs",
+              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Controllers\\SessionController.cs",
+              "RelativeDocumentMoniker": "Server\\DDetective\\Controllers\\SessionController.cs",
+              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Controllers\\SessionController.cs",
+              "RelativeToolTip": "Server\\DDetective\\Controllers\\SessionController.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAuwCsAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T00:50:50.818Z",
+              "WhenOpened": "2025-02-27T22:15:06.255Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Models\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "Server\\DDetective\\Models\\ApplicationUser.cs",
+              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Models\\ApplicationUser.cs",
+              "RelativeToolTip": "Server\\DDetective\\Models\\ApplicationUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T20:07:11.234Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EventDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Data\\EventDbContext.cs",
+              "RelativeDocumentMoniker": "Server\\DDetective\\Data\\EventDbContext.cs",
+              "ToolTip": "C:\\Users\\hayli\\OneDrive\\Desktop\\DateDetective\\DDetective\\Server\\DDetective\\Data\\EventDbContext.cs",
+              "RelativeToolTip": "Server\\DDetective\\Data\\EventDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-19T21:08:02.461Z"
             }
           ]
         }
