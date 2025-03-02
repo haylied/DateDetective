@@ -21,6 +21,7 @@ namespace DDetective.Models
             ExpirationDate = expirationDate;
         }
 
+
     }
 
 
