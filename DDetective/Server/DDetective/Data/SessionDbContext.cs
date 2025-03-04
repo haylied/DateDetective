@@ -9,6 +9,13 @@ namespace DDetective.Data
             : base(options) { }
 
         public DbSet<SessionModel> Session { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SessionModel>()
+                .HasOne(e => e.SessionId)
+                .WithMany()
+        }
     }
 
 }
