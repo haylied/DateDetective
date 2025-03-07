@@ -43,7 +43,7 @@ public class Repo
         }
     }
 
-    public async Task<AddEventModel> GetAllEventsByIdAsync(int eventId)
+    public async Task<AddEventModel> GetEventByIdAsync(int eventId)
     {
         using (var db = Connection)
         {
@@ -94,6 +94,26 @@ public class Repo
 
     // ----- SESSION METHODS ----- //
 
+    public async Task<IEnumerable<SessionModel>> GetAllSessionsAsync()
+    {
+        using (var db = Connection)
+        {
+            await db.Open();
+            string sql = "SELECT * FROM Session";
+            return await db.QueryAsync<SessionModel>(sql).ToList();
+        }
+    }
+
+    public async Task<AddEventModel> GetSessionIdAsync(int sessionId)
+    {
+        using (var db = Connection)
+        {
+            await db.Open();
+            string sql = "SELECT * FROM Session WHERE SessionId = @sessionId";
+            return await db.QueryAsync<SessionModel>(sql, new { SessionId = sessionId };
+        }
+    }
+
     public async Task<int> CreateSession(SessionModel newSession)
     {
         using (var db = Connection)
@@ -130,7 +150,26 @@ public class Repo
 
     // ----- PROFILE METHODS ----- //
 
-    public async Task<int> CreateProfile(Profile newProfile)
+    public async Task<IEnumerable<Profile>> GetAllProfilesAsync()
+    {
+        using (var db = Connection)
+        {
+            await db.Open();
+            string sql = "SELECT * FROM Profile";
+            return await db.QueryAsync<Profile>(sql).ToList();
+        }
+    }
+
+    public async Task<AddEventModel> GetProfileByIdAsync(int profileId)
+    {
+        using (var db = Connection)
+        {
+            await db.Open();
+            string sql = "SELECT * FROM Profile WHERE ProfileId = @profileId";
+            return await db.QueryAsync<Profile>(sql, new { ProfileId = profileId };
+        }
+
+        public async Task<int> CreateProfile(Profile newProfile)
     {
         using ( var db = Connection)
         {
