@@ -30,17 +30,17 @@ public class Domain
         _repo = repo;
     }
 
-    public async Task<> EventCreate(Event newEvent)
+    public async Task<> EventCreate(AddEventModel newEvent)
     {
         if (ModelState.IsValid)
         {
             return await _repo.CreateEventAsync(newEvent);
         }
-
+        // if false, state false
         return BadRequest(); //????
     }
 
-    public async Task<> EventDeleteById(int EventId)
+    public async Task<> EventDeleteById(int eventId)
     {
 
     }
