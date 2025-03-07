@@ -21,12 +21,16 @@ public class Repo
     public IDbConnection Connection => new NpgsqlConnection(_connectionString);
 
     /// Create Helper Method for all connections, similar to this??... should I use void?
-    /*public async Task<IDbConnection OpenAsyncConnection()
+    //public async Task<IDbConnection> OpenAsyncConnection()
     //{
-        var db = Connection;
-        await db.OpenAsync();
-        return db;
-    */
+    //    var db = Connection;
+    //    await db.OpenAsync();
+    //    return db;
+    //}
+
+
+    // ----- EVENT METHODS ----- //
+
 
     public async Task<IEnumerable<AddEventModel>> GetAllEventsAsync()
     {
@@ -57,7 +61,7 @@ public class Repo
             string sql = "INSERT INTO Event (EventId, EventName, EventDescription, AllDayEvent, StartDate, StartTime, EndDate, EndTime, EventOriginatorId)" +
                 "VALUES (@eventId, @eventName, @eventDescription, @allDayEvent, @startDate, @startTime, @endDate, @endTime, @eventOriginiatorId)";
             //return await db.Execute(sql, new { eventId = @eventId, eventName = @eventName, eventDescription = @eventDiscription, allDayEvent = @allDayEvent, startDate = @startDate, startTime = @startTime, endDate = @endDate, endTime = @endTime, eventOriginatorId = @eventOriginatorId})
-            return await db.Execute(sql, new { newEvent.EventId, newEvent.EventName, newEvent.EventDiscription, newEvent.AllDayEvent, newEvent.StartDate, newEvent.StartTime, newEvent.EndDate, newEvent.EndTime, newEvent.EventOriginatorId });
+            return await db.ExecuteAsync(sql, new { newEvent.EventId, newEvent.EventName, newEvent.EventDiscription, newEvent.AllDayEvent, newEvent.StartDate, newEvent.StartTime, newEvent.EndDate, newEvent.EndTime, newEvent.EventOriginatorId });
         }
     }
     // what should this be? Task<int>??
@@ -70,7 +74,7 @@ public class Repo
                 "SET EventId = @EventID, EventName = @EventName, EventDescription = @EventDescription, AllDayEvent = @AllDayEvent, StartDate = @StartDate, StartTime = @StartTime, EndDate = @EndDate, EndTime = @EndTime, EventOriginatorId = @EventOriginatorId " +
                 "WHERE EventId = @EventId";
             // sets sql execute to int value representing rows affected
-            int result = await db.Execute(sql, new { eventToUpdate.EventId, eventToUpdate.EventName, eventToUpdate.EventDiscription, eventToUpdate.AllDayEvent, eventToUpdate.StartDate, eventToUpdate.StartTime, eventToUpdate.EndDate, eventToUpdate.EndTime, eventToUpdate.EventOriginatorId });
+            int result = await db.ExecuteAsync(sql, new { eventToUpdate.EventId, eventToUpdate.EventName, eventToUpdate.EventDiscription, eventToUpdate.AllDayEvent, eventToUpdate.StartDate, eventToUpdate.StartTime, eventToUpdate.EndDate, eventToUpdate.EndTime, eventToUpdate.EventOriginatorId });
             return result > 0;
         }
    }
@@ -81,7 +85,43 @@ public class Repo
         {
             await db.Open();
             string sql = " DELETE FROM Event WHERE EventId = @EventId";
-            int result = await db.Execute(sql, new { EventId = eventId });
+            int result = await db.ExecuteAsync(sql, new { EventId = eventId });
+            return result > 0;
+        }
+    }
+
+
+    // ----- SESSION METHODS ----- //
+
+    public async Task<int> CreateSession(SessionModel newSession)
+    {
+        using (var db = Connection)
+        {
+            await db.Open();
+            // need to double check on sql syntax
+            string sql = "INSERT INTO Session (SessionId, SessionName, SessionToken, ExpirationDate) VALUES (@sessionId, @sessionName, @sessionToken, @exirpationDate) RETURNING SessionId"
+            return await db.ExecuteAsync(sql, new {newSession.SessionId, newSession.SessionName, newSession.SessionToken, newSession.ExpirationDate})
+        }
+    }
+
+    public async Task<bool> UpdateSession(SessionModel sessionToUpdate)
+    {
+        using (var db = Connection)
+        {
+            await db.Open();
+            string sql = "UPDATE Session SET SessionId = @SessionId, SessionName = @SessionName, SessionToken = @SessionToken, ExpirationDate = @ExpirationDate WHERE SessionId = @SessionId";
+            int result = await db.ExecuteAsync(sql, new { sessionToUpdate.SessionId, sessionToUpdate.SessionName, sessionToUpdate.SessionToken, sessionToUpdate.ExpirationDate})
+            return result > 0;
+        }
+    }
+
+    public async Task<bool> DeleteSession(int sessionId)
+    {
+        using (var db = Connection)
+        {
+            await db.Open();
+            string sql = " DELETE FROM Session WHERE SessionId = @SessionId";
+            int result = await db.ExecuteAsync(sql, new { SessionId = sessionId });
             return result > 0;
         }
     }
