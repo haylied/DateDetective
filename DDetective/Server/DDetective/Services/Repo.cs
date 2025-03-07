@@ -6,6 +6,7 @@ using Npgsql;
 using System.Threading.Tasks;
 using DDetective.Models;
 using System.Security.Policy;
+using DDetctive.Models;
 
 
 public class Repo
@@ -120,8 +121,43 @@ public class Repo
         using (var db = Connection)
         {
             await db.Open();
-            string sql = " DELETE FROM Session WHERE SessionId = @SessionId";
+            string sql = "DELETE FROM Session WHERE SessionId = @SessionId";
             int result = await db.ExecuteAsync(sql, new { SessionId = sessionId });
+            return result > 0;
+        }
+    }
+
+
+    // ----- PROFILE METHODS ----- //
+
+    public async Task<int> CreateProfile(Profile newProfile)
+    {
+        using ( var db = Connection)
+        {
+            await db.Open();
+            string sql = "INSERT INTO Profile (ProfileId, ProfileName, SessionId) VALUES (@profileId, @profileName, @sessionId) RETURNING ProfileId";
+            return await db.ExecuteAsync(sql, new { newProfile.ProfileId, newProfile.ProfileName, newProfile.SessionId });
+        }
+    }
+
+    public async Task<bool> UpdateProfile(Profile profileToUpdate)
+    {
+        using (var db = Connection)
+        {
+            await db.Open();
+            string sql = "UPDATE Profile SET ProfileId = @ProfileId, ProfileName = @ProfileName, SessionId = @SessionId WHERE ProfileId = @ProfileId";
+            int result = await db.ExecuteAsync(sql, profileToUpdate.ProfileId, profileToUpdate.ProfileName, profileToUpdate.SessionId);
+            return result > 0;
+        }
+    }
+
+    public async Task<bool> DeleteProfile(int profileId)
+    {
+        using (var db = Connection)
+        {
+            await db.Open();
+            string sql = " DELETE FROM Profile WHERE ProfileId = @OProfileId";
+            int result = await db.ExecuteAsync(sql, new { ProfileId = profileId });
             return result > 0;
         }
     }
