@@ -21,7 +21,7 @@ public class Repo
     // New NpgsqlConnection instance need each time it is used???
     public IDbConnection Connection => new NpgsqlConnection(_connectionString);
 
-    /// Create Helper Method for all connections, similar to this??... should I use void?
+    /// Create Helper Method for all connections, similar to this??... 
     //public async Task<IDbConnection> OpenAsyncConnection()
     //{
     //    var db = Connection;
@@ -48,7 +48,8 @@ public class Repo
         using (var db = Connection)
         {
             await db.Open();
-            string sql = "SELECT * FROM Event WHERE EventId = @eventId";
+            string sql = "SELECT * FROM Event " +
+                "WHERE EventId = @eventId";
             return await db.QueryAsync<AddEventModel>(sql, new { eventId = eventId };
         }
     }
@@ -59,10 +60,37 @@ public class Repo
         using (var db = Connection)
         {
             await db.Open();
-            string sql = "INSERT INTO Event (EventId, EventName, EventDescription, AllDayEvent, StartDate, StartTime, EndDate, EndTime, EventOriginatorId)" +
-                "VALUES (@eventId, @eventName, @eventDescription, @allDayEvent, @startDate, @startTime, @endDate, @endTime, @eventOriginiatorId)";
-            //return await db.Execute(sql, new { eventId = @eventId, eventName = @eventName, eventDescription = @eventDiscription, allDayEvent = @allDayEvent, startDate = @startDate, startTime = @startTime, endDate = @endDate, endTime = @endTime, eventOriginatorId = @eventOriginatorId})
-            return await db.ExecuteAsync(sql, new { newEvent.EventId, newEvent.EventName, newEvent.EventDiscription, newEvent.AllDayEvent, newEvent.StartDate, newEvent.StartTime, newEvent.EndDate, newEvent.EndTime, newEvent.EventOriginatorId });
+            string sql = "INSERT INTO Event " +
+                "(EventId, " +
+                "EventName, " +
+                "EventDescription, " +
+                "AllDayEvent, " +
+                "StartDate, " +
+                "StartTime, " +
+                "EndDate, " +
+                "EndTime, " +
+                "EventOriginatorId)" +
+                "VALUES " +
+                "(@eventId, " +
+                "@eventName, " +
+                "@eventDescription, " +
+                "@allDayEvent, " +
+                "@startDate, " +
+                "@startTime, " +
+                "@endDate, " +
+                "@endTime, " +
+                "@eventOriginiatorId)";
+
+            return await db.ExecuteAsync(sql, new { 
+                newEvent.EventId, 
+                newEvent.EventName, 
+                newEvent.EventDiscription, 
+                newEvent.AllDayEvent, 
+                newEvent.StartDate, 
+                newEvent.StartTime, 
+                newEvent.EndDate, 
+                newEvent.EndTime, 
+                newEvent.EventOriginatorId });
         }
     }
     // what should this be? Task<int>??
@@ -72,10 +100,26 @@ public class Repo
         {
             await db.Open();
             string sql = "UPDATE Event " +
-                "SET EventId = @EventID, EventName = @EventName, EventDescription = @EventDescription, AllDayEvent = @AllDayEvent, StartDate = @StartDate, StartTime = @StartTime, EndDate = @EndDate, EndTime = @EndTime, EventOriginatorId = @EventOriginatorId " +
+                "SET EventId = @EventID, " +
+                "EventName = @EventName, " +
+                "EventDescription = @EventDescription, " +
+                "AllDayEvent = @AllDayEvent, " +
+                "StartDate = @StartDate, " +
+                "StartTime = @StartTime, " +
+                "EndDate = @EndDate, " +
+                "EndTime = @EndTime, " +
+                "EventOriginatorId = @EventOriginatorId " +
                 "WHERE EventId = @EventId";
             // sets sql execute to int value representing rows affected
-            int result = await db.ExecuteAsync(sql, new { eventToUpdate.EventId, eventToUpdate.EventName, eventToUpdate.EventDiscription, eventToUpdate.AllDayEvent, eventToUpdate.StartDate, eventToUpdate.StartTime, eventToUpdate.EndDate, eventToUpdate.EndTime, eventToUpdate.EventOriginatorId });
+            int result = await db.ExecuteAsync(sql, new { eventToUpdate.EventId, 
+                eventToUpdate.EventName, 
+                eventToUpdate.EventDiscription, 
+                eventToUpdate.AllDayEvent, 
+                eventToUpdate.StartDate, 
+                eventToUpdate.StartTime, 
+                eventToUpdate.EndDate, 
+                eventToUpdate.EndTime, 
+                eventToUpdate.EventOriginatorId });
             return result > 0;
         }
    }
@@ -85,7 +129,8 @@ public class Repo
         using (var db = Connection)
         {
             await db.Open();
-            string sql = " DELETE FROM Event WHERE EventId = @EventId";
+            string sql = " DELETE FROM Event " +
+                "WHERE EventId = @EventId";
             int result = await db.ExecuteAsync(sql, new { EventId = eventId });
             return result > 0;
         }
@@ -120,8 +165,22 @@ public class Repo
         {
             await db.Open();
             // need to double check on sql syntax
-            string sql = "INSERT INTO Session (SessionId, SessionName, SessionToken, ExpirationDate) VALUES (@sessionId, @sessionName, @sessionToken, @exirpationDate) RETURNING SessionId"
-            return await db.ExecuteAsync(sql, new {newSession.SessionId, newSession.SessionName, newSession.SessionToken, newSession.ExpirationDate})
+            string sql = "INSERT INTO Session " +
+                "(SessionId, " +
+                "SessionName, " +
+                "SessionToken, " +
+                "ExpirationDate) " +
+                "VALUES " +
+                "(@sessionId, " +
+                "@sessionName, " +
+                "@sessionToken, " +
+                "@exirpationDate) " +
+                "RETURNING SessionId"
+            return await db.ExecuteAsync(sql, new {
+                newSession.SessionId, 
+                newSession.SessionName, 
+                newSession.SessionToken, 
+                newSession.ExpirationDate})
         }
     }
 
@@ -130,8 +189,17 @@ public class Repo
         using (var db = Connection)
         {
             await db.Open();
-            string sql = "UPDATE Session SET SessionId = @SessionId, SessionName = @SessionName, SessionToken = @SessionToken, ExpirationDate = @ExpirationDate WHERE SessionId = @SessionId";
-            int result = await db.ExecuteAsync(sql, new { sessionToUpdate.SessionId, sessionToUpdate.SessionName, sessionToUpdate.SessionToken, sessionToUpdate.ExpirationDate})
+            string sql = "UPDATE Session " +
+                "SET SessionId = @SessionId, " +
+                "SessionName = @SessionName, " +
+                "SessionToken = @SessionToken, " +
+                "ExpirationDate = @ExpirationDate " +
+                "WHERE SessionId = @SessionId";
+            int result = await db.ExecuteAsync(sql, new { 
+                sessionToUpdate.SessionId, 
+                sessionToUpdate.SessionName, 
+                sessionToUpdate.SessionToken, 
+                sessionToUpdate.ExpirationDate})
             return result > 0;
         }
     }
@@ -141,7 +209,8 @@ public class Repo
         using (var db = Connection)
         {
             await db.Open();
-            string sql = "DELETE FROM Session WHERE SessionId = @SessionId";
+            string sql = "DELETE FROM Session " +
+                "WHERE SessionId = @SessionId";
             int result = await db.ExecuteAsync(sql, new { SessionId = sessionId });
             return result > 0;
         }
@@ -165,17 +234,32 @@ public class Repo
         using (var db = Connection)
         {
             await db.Open();
-            string sql = "SELECT * FROM Profile WHERE ProfileId = @profileId";
+            string sql = "SELECT * FROM Profile " +
+                "WHERE ProfileId = @profileId";
             return await db.QueryAsync<Profile>(sql, new { ProfileId = profileId };
         }
-
-        public async Task<int> CreateProfile(Profile newProfile)
+    }
+        
+    public async Task<int> CreateProfile(Profile newProfile)
     {
-        using ( var db = Connection)
+        using (var db = Connection)
         {
             await db.Open();
-            string sql = "INSERT INTO Profile (ProfileId, ProfileName, SessionId) VALUES (@profileId, @profileName, @sessionId) RETURNING ProfileId";
-            return await db.ExecuteAsync(sql, new { newProfile.ProfileId, newProfile.ProfileName, newProfile.SessionId });
+            string sql = "INSERT INTO Profile " +
+                    "(ProfileId, " +
+                    "ProfileName, " +
+                    "SessionId) " +
+                    "VALUES " +
+                    "(@profileId, " +
+                    "@profileName, " +
+                    "@sessionId) " +
+                    "RETURNING ProfileId";
+            return await db.ExecuteAsync(sql, new
+            {
+                newProfile.ProfileId,
+                newProfile.ProfileName,
+                newProfile.SessionId
+            });
         }
     }
 
@@ -184,8 +268,15 @@ public class Repo
         using (var db = Connection)
         {
             await db.Open();
-            string sql = "UPDATE Profile SET ProfileId = @ProfileId, ProfileName = @ProfileName, SessionId = @SessionId WHERE ProfileId = @ProfileId";
-            int result = await db.ExecuteAsync(sql, profileToUpdate.ProfileId, profileToUpdate.ProfileName, profileToUpdate.SessionId);
+            string sql = "UPDATE Profile " +
+                    "SET ProfileId = @ProfileId, " +
+                    "ProfileName = @ProfileName, " +
+                    "SessionId = @SessionId " +
+                    "WHERE ProfileId = @ProfileId";
+            int result = await db.ExecuteAsync(sql,
+                profileToUpdate.ProfileId,
+                profileToUpdate.ProfileName,
+                profileToUpdate.SessionId);
             return result > 0;
         }
     }
@@ -195,8 +286,11 @@ public class Repo
         using (var db = Connection)
         {
             await db.Open();
-            string sql = " DELETE FROM Profile WHERE ProfileId = @OProfileId";
+            string sql = " DELETE FROM Profile " +
+                    "WHERE ProfileId = @OProfileId";
             int result = await db.ExecuteAsync(sql, new { ProfileId = profileId });
             return result > 0;
         }
     }
+
+}

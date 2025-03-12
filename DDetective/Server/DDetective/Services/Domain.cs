@@ -1,25 +1,13 @@
 using Dapper;
+using System;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
-using Npgsql; 
+using Npgsql;
 using System.Threading.Tasks;
+using DDetective.Models;
+using System.Security.Policy;
 using DDetective.Services;
-using DDetective.Model;
-
-/*
- * Methods:
- * - GetAllEvents
- * - GetEventByID
- * - CreateEvent
- * - UpdateEvent
- * - DeleteEvent
- * - CreateSession
- * - UpdateSession
- * - CreateProfile
- * - UpdateProfile
- * - DeleteProfile
- */
 
 public class Domain
 {
@@ -30,72 +18,99 @@ public class Domain
         _repo = repo;
     }
 
-    public async Task<> EventCreate(AddEventModel newEvent)
+    // --------- Events Logic ---------
+    public async Task<IEnumerable<Event>> GetAllEvents()
     {
-        if (ModelState.IsValid)
-        {
-            return await _repo.CreateEventAsync(newEvent);
-        }
-        // if false, state false
-        return BadRequest(); //????
-    }
-
-    public async Task<> EventDeleteById(int eventId)
-    {
-
-    }
-
-    public async Task<IEnumerable<Event>> EventGetAll()
-    {
+        // Add any business rules or transformations here if needed.
         return await _repo.GetAllEventsAsync();
     }
 
-    public async Task<AddEventModel> EventGetAllById(int eventId)
+    public async Task<AddEventModel> GetEventById(int eventId)
     {
-        if (AddEventModel.EventId == eventId)
+        // For example, you might validate the eventId here.
+        return await _repo.GetEventByIdAsync(eventId);
+    }
+
+    public async Task<int> CreateEvent(AddEventModel newEvent)
+    {
+        return await _repo.CreateEventAsync(newEvent);
+    }
+
+    public async Task<bool> UpdateEvent(AddEventModel eventToUpdate)
+    {
+        if (eventToUpdate.AllDayEvent)
         {
-            return await _repo.GetEventByIdAsync(eventId);
+            // Set start time to midnight of the start date.
+            eventToUpdate.StartTime = eventToUpdate.StartDate.Date;
+            // Set end time to 23:59:59 of the end date.
+            eventToUpdate.EndTime = eventToUpdate.EndDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
         }
 
-        return NotFound();
-
+        return await _repo.UpdateEvent(eventToUpdate);
     }
 
-    public async Task<> EventUpdateById(int EventId)
+    public async Task<bool> DeleteEvent(int eventId)
     {
+        var existingEvent = await _repo.GetEventByIdAsync(eventId);
 
+        if (existingEvent == null)
+        {
+            Console.WriteLine($"Event " + eventId + $" not found.");
+            return false;
+        }
+
+        return await _repo.DeleteEventAsync(eventId);
     }
 
-
-    public async Task<> ProfileCreate()
+    // --------- Sessions Logic ---------
+    public async Task<IEnumerable<SessionModel>> GetAllSessionsAsync()
     {
-
+        return await _repo.GetAllSessionsAsync();
     }
 
-    public async Task<> ProfileDelete()
+    public async Task<SessionModel> GetSessionByIdAsync(int sessionId)
     {
-
+        return await _repo.GetSessionIdAsync(sessionId);
     }
 
-    public async Task<> ProfileUpdate()
+    public async Task<int> CreateSessionAsync(SessionModel newSession)
     {
-
+        return await _repo.CreateSession(newSession);
     }
 
-    public async Task<> SessionCreate()
+    public async Task<bool> UpdateSessionAsync(SessionModel sessionToUpdate)
     {
-
+        return await _repo.UpdateSession(sessionToUpdate);
     }
 
-    public async Task<> SessionDelete()
+    public async Task<bool> DeleteSessionAsync(int sessionId)
     {
-
+        return await _repo.DeleteSession(sessionId);
     }
 
-    public async Task<> SessionUpdate()
+    // --------- Profiles Logic ---------
+    public async Task<IEnumerable<Profile>> GetAllProfilesAsync()
     {
-
+        return await _repo.GetAllProfilesAsync();
     }
 
+    public async Task<Profile> GetProfileByIdAsync(int profileId)
+    {
+        return await _repo.GetProfileByIdAsync(profileId);
+    }
 
+    public async Task<int> CreateProfileAsync(Profile newProfile)
+    {
+        return await _repo.CreateProfile(newProfile);
+    }
+
+    public async Task<bool> UpdateProfileAsync(Profile profileToUpdate)
+    {
+        return await _repo.UpdateProfile(profileToUpdate);
+    }
+
+    public async Task<bool> DeleteProfileAsync(int profileId)
+    {
+        return await _repo.DeleteProfile(profileId);
+    }
 }
