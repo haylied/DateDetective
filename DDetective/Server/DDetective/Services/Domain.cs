@@ -21,7 +21,7 @@ public class Domain
     }
 
     // --------- Events Logic ---------
-    public async IAsyncEnumerable<AddEventModel> GetAllEvents()
+    public async Task<IEnumerable<AddEventModel>> GetAllEvents()
     {
         return await _repo.GetAllEventsAsync();
     }
@@ -56,10 +56,11 @@ public class Domain
 
         if (existingEvent == null)
         {
-            Console.WriteLine($"Event " + @eventId + $" not found.");
+            Console.WriteLine($"Event {eventId} not found.");
             return false;
         }
 
+        Console.WriteLine($"Event {eventId} deleted.");
         return await _repo.DeleteEventAsync(eventId);
     }
 
@@ -86,6 +87,15 @@ public class Domain
 
     public async Task<bool> DeleteSessionAsync(int sessionId)
     {
+        var existingSession = await _repo.GetSessionByIdAsync(sessionId);
+
+        if (existingSession == null)
+        {
+            Console.WriteLine($"Session {sessionId} not found.");
+            return false;
+        }
+
+        Console.WriteLine($"Session {sessionId} deleted.");
         return await _repo.DeleteSession(sessionId);
     }
 
@@ -112,6 +122,16 @@ public class Domain
 
     public async Task<bool> DeleteProfileAsync(int profileId)
     {
+        var existingProfile = await _repo.GetProfileByIdAsync(profileId);
+
+        if (existingProfile == null)
+        {
+            Console.WriteLine($"Profile {profileId} not found.");
+            return false;
+
+        }
+
+        Console.WriteLine($"Profile {profileId} deleted.");
         return await _repo.DeleteProfile(profileId);
     }
 }
