@@ -39,7 +39,8 @@ public class Repo
         {
             await db.Open();
             string sql = "SELECT * FROM Event";
-            return await db.QueryAsync<AddEventModel>(sql).ToList();
+            return await db.QueryAsync<AddEventModel>(sql).ToList(); 
+            // close database at end ?
         }
     }
 

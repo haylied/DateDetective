@@ -1,11 +1,13 @@
 using Dapper;
 using System;
 using Microsoft.Extensions.Configuration;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using Npgsql;
 using System.Threading.Tasks;
 using DDetective.Models;
+using DDetective.ViewModels;
 using System.Security.Policy;
 using DDetective.Services;
 
@@ -19,15 +21,13 @@ public class Domain
     }
 
     // --------- Events Logic ---------
-    public async Task<IEnumerable<Event>> GetAllEvents()
+    public async IAsyncEnumerable<AddEventModel> GetAllEvents()
     {
-        // Add any business rules or transformations here if needed.
         return await _repo.GetAllEventsAsync();
     }
 
     public async Task<AddEventModel> GetEventById(int eventId)
     {
-        // For example, you might validate the eventId here.
         return await _repo.GetEventByIdAsync(eventId);
     }
 
@@ -36,7 +36,8 @@ public class Domain
         return await _repo.CreateEventAsync(newEvent);
     }
 
-    public async Task<bool> UpdateEvent(AddEventModel eventToUpdate)
+    // View Model for validation???
+    public async Task<bool> UpdateEvent(AddEventViewModel eventToUpdate)
     {
         if (eventToUpdate.AllDayEvent)
         {
@@ -55,7 +56,7 @@ public class Domain
 
         if (existingEvent == null)
         {
-            Console.WriteLine($"Event " + eventId + $" not found.");
+            Console.WriteLine($"Event " + @eventId + $" not found.");
             return false;
         }
 
