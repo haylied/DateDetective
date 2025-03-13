@@ -1,0 +1,153 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
+using DDetective.Models;
+using DDetective.Services;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace DDetective.Endpoints
+{
+    public static class EventEndpoints
+    {
+        public static IEndpointRouteBuilder Endpoints (this IEndpointRouteBuilder endpoints)
+        {
+            // -------------------------
+            // EVENT ENDPOINTS
+            // -------------------------
+
+            // GET all events
+            endpoints.MapGet("/events", async (Domain domain) =>
+            {
+                var events = await domain.GetAllEvents().ToListAsync();
+                return Results.Ok(events);
+            });
+
+            // GET event by id
+            endpoints.MapGet("/events/{id:int}", async (int id, Domain domain) =>
+            {
+                var eventsById = await domain.GetEventById(id);
+                return eventsById is not null ? Results.Ok(eventsById) : Results.NotFound();
+            });
+
+            // GET (create) an event
+            endpoints.MapGet("/events", async (AddEventModel newEvent, Domain domain))
+            {
+
+            }
+
+            // POST (create) an event
+            endpoints.MapPost("/events", async (AddEventModel newEvent, Domain domain) =>
+            {
+                int newId = await domain.CreateEvent(newEvent);
+                // Return a 201 Created response with a location header.
+                return Results.Created($"/events/{newId}", newEvent);
+            });
+
+            // Should I use VM for Validation or place Validation in Model??
+            // Get Rid of VM for Minimal API, Keep for MVC
+            // PUT (update) an event
+            endpoints.MapPut("/events/{id:int}", async (int id, AddEventViewModel updateEvent, Domain domain) =>
+            {
+                // Ensure the update model has the correct EventId.
+                updateEvent.EventId = id;
+                bool updated = await domain.UpdateEvent(updateEvent);
+                return updated ? Results.NoContent() : Results.NotFound();
+            });
+
+            // DELETE an event
+            endpoints.MapDelete("/events/{id:int}", async (int id, Domain domain) =>
+            {
+                try
+                {
+                    bool deleted = await domain.DeleteEvent(id);
+                    return deleted ? Results.NoContent() : Results.NotFound();
+                }
+                catch (KeyNotFoundException ex)
+                {
+                    return Results.NotFound(ex.Message);
+                }
+            });
+
+            // -------------------------
+            // SESSION ENDPOINTS
+            // -------------------------
+
+            // GET all sessions
+            endpoints.MapGet("/sessions", async (Domain domain) =>
+            {
+                var sessions = await domain.GetAllSessionsAsync();
+                return Results.Ok(sessions);
+            });
+
+            // GET session by id
+            endpoints.MapGet("/sessions/{id:int}", async (int id, Domain domain) =>
+            {
+                var session = await domain.GetSessionByIdAsync(id);
+                return session is not null ? Results.Ok(session) : Results.NotFound();
+            });
+
+            // POST (create) a session
+            endpoints.MapPost("/sessions", async (SessionModel newSession, Domain domain) =>
+            {
+                int newId = await domain.CreateSessionAsync(newSession);
+                return Results.Created($"/sessions/{newId}", newSession);
+            });
+
+            // PUT (update) a session
+            endpoints.MapPut("/sessions/{id:int}", async (int id, SessionModel sessionToUpdate, Domain domain) =>
+            {
+                // Optionally ensure the session ID is correct.
+                sessionToUpdate.SessionId = id;
+                bool updated = await domain.UpdateSessionAsync(sessionToUpdate);
+                return updated ? Results.NoContent() : Results.NotFound();
+            });
+
+            // DELETE a session
+            endpoints.MapDelete("/sessions/{id:int}", async (int id, Domain domain) =>
+            {
+                bool deleted = await domain.DeleteSessionAsync(id);
+                return deleted ? Results.NoContent() : Results.NotFound();
+            });
+
+            // -------------------------
+            // PROFILE ENDPOINTS
+            // -------------------------
+
+            // GET all profiles
+            endpoints.MapGet("/profiles", async (Domain domain) =>
+            {
+                var profiles = await domain.GetAllProfilesAsync();
+                return Results.Ok(profiles);
+            });
+
+            // GET profile by id
+            endpoints.MapGet("/profiles/{id:int}", async (int id, Domain domain) =>
+            {
+                var profile = await domain.GetProfileByIdAsync(id);
+                return profile is not null ? Results.Ok(profile) : Results.NotFound();
+            });
+
+            // POST (create) a profile
+            endpoints.MapPost("/profiles", async (Profile newProfile, Domain domain) =>
+            {
+                int newId = await domain.CreateProfileAsync(newProfile);
+                return Results.Created($"/profiles/{newId}", newProfile);
+            });
+
+            // PUT (update) a profile
+            endpoints.MapPut("/profiles/{id:int}", async (int id, Profile profileToUpdate, Domain domain) =>
+            {
+                profileToUpdate.ProfileId = id;
+                bool updated = await domain.UpdateProfileAsync(profileToUpdate);
+                return updated ? Results.NoContent() : Results.NotFound();
+            });
+
+            // DELETE a profile
+            endpoints.MapDelete("/profiles/{id:int}", async (int id, Domain domain) =>
+            {
+                bool deleted = await domain.DeleteProfileAsync(id);
+                return deleted ? Results.NoContent() : Results.NotFound();
+            });
+        }
+    }
