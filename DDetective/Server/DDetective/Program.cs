@@ -2,6 +2,7 @@ using DDetective.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DDetective.Areas.Identity.Data;
+using DDetective.Services;
 
 namespace DDetective
 {
@@ -26,22 +27,33 @@ namespace DDetective
                     });
             });
 
+            // ENTITY FRAMEWORK:  (remove)
+            //builder.Services.AddDbContext<EventDbContext>(options =>
+            //    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
 
-            builder.Services.AddDbContext<EventDbContext>(options =>
-                options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
-
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<DDetectiveIdentityDbContext>();
+            //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<DDetectiveIdentityDbContext>();
 
 
-            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            // Set up Identity using ApplicationDbContext.
-            // builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddDatabaseDeveloperPageExceptionFilter();;
 
             builder.Services.AddControllersWithViews();
 
+
+            // Register Classes Via DI for modular use?
+            builder.Services.AddScoped<Repo>();
+            builder.Services.AddScoped<Domain>();
+
+
             var app = builder.Build();
+
+            //--------------------------------//
+
+            //MINIMAL API ENDPOINTS - I think
+
+            Endpoints.Map(app);
+
+            //--------------------------------//
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

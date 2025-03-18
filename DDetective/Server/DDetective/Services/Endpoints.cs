@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DDetective.Endpoints
 {
-    public static class EventEndpoints
+    public static class Endpoints
     {
         public static IEndpointRouteBuilder Endpoints (this IEndpointRouteBuilder endpoints)
         {
@@ -34,7 +34,7 @@ namespace DDetective.Endpoints
             endpoints.MapGet("/events", async (AddEventModel newEvent, Domain domain))
             {
 
-            }
+            };
 
             // POST (create) an event
             endpoints.MapPost("/events", async (AddEventModel newEvent, Domain domain) =>
@@ -44,10 +44,8 @@ namespace DDetective.Endpoints
                 return Results.Created($"/events/{newId}", newEvent);
             });
 
-            // Should I use VM for Validation or place Validation in Model??
-            // Get Rid of VM for Minimal API, Keep for MVC
             // PUT (update) an event
-            endpoints.MapPut("/events/{id:int}", async (int id, AddEventViewModel updateEvent, Domain domain) =>
+            endpoints.MapPut("/events/{id:int}", async (int id, AddEventModel updateEvent, Domain domain) =>
             {
                 // Ensure the update model has the correct EventId.
                 updateEvent.EventId = id;

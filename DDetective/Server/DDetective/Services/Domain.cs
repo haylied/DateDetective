@@ -37,7 +37,7 @@ public class Domain
     }
 
     // View Model for validation???
-    public async Task<bool> UpdateEvent(AddEventViewModel eventToUpdate)
+    public async Task<bool> UpdateEvent(AddEventModel eventToUpdate)
     {
         if (eventToUpdate.AllDayEvent)
         {
