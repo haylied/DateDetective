@@ -33,7 +33,7 @@ public class Repo
     // ----- EVENT METHODS ----- //
 
 
-    public async Task<IEnumerable<AddEventModel>> GetAllEventsAsync()
+    public async Task<IEnumerable<Event>> GetAllEvents()
     {
         using (var db = Connection)
         {
@@ -44,7 +44,7 @@ public class Repo
         }
     }
 
-    public async Task<AddEventModel> GetEventByIdAsync(int eventId)
+    public async Task<Event> GetEventById(int eventId)
     {
         using (var db = Connection)
         {
@@ -55,8 +55,8 @@ public class Repo
         }
     }
 
-    // public async Task<AddEventModel> CreateEvent(AddEventModel newEvent)
-    public async Task<int> CreateEvent(AddEventModel newEvent)
+    // Original w. 
+    public async Task<int> CreateEvent(Event newEvent)
     {
         using (var db = Connection)
         {
@@ -64,38 +64,39 @@ public class Repo
             string sql = "INSERT INTO Event " +
                 "(EventId, " +
                 "EventName, " +
-                "EventDescription, " +
+               // "EventDescription, " +
                 "AllDayEvent, " +
                 "StartDate, " +
                 "StartTime, " +
                 "EndDate, " +
                 "EndTime, " +
-                "EventOriginatorId)" +
+               // "EventOriginatorId)" +
                 "VALUES " +
                 "(@eventId, " +
                 "@eventName, " +
-                "@eventDescription, " +
+               // "@eventDescription, " +
                 "@allDayEvent, " +
                 "@startDate, " +
                 "@startTime, " +
                 "@endDate, " +
                 "@endTime, " +
-                "@eventOriginiatorId)";
+               // "@eventOriginiatorId)";
 
             return await db.ExecuteAsync(sql, new { 
                 newEvent.EventId, 
                 newEvent.EventName, 
-                newEvent.EventDiscription, 
+               // newEvent.EventDiscription, 
                 newEvent.AllDayEvent, 
                 newEvent.StartDate, 
                 newEvent.StartTime, 
                 newEvent.EndDate, 
                 newEvent.EndTime, 
-                newEvent.EventOriginatorId });
+               // newEvent.EventOriginatorId
+                });
         }
     }
     // what should this be? Task<int>??
-   public async Task<bool> UpdateEvent(AddEventModel eventToUpdate)
+   public async Task<bool> UpdateEvent(Event eventToUpdate)
    {
         using (var db = Connection)
         {
@@ -103,24 +104,25 @@ public class Repo
             string sql = "UPDATE Event " +
                 "SET EventId = @EventID, " +
                 "EventName = @EventName, " +
-                "EventDescription = @EventDescription, " +
+               // "EventDescription = @EventDescription, " +
                 "AllDayEvent = @AllDayEvent, " +
                 "StartDate = @StartDate, " +
                 "StartTime = @StartTime, " +
                 "EndDate = @EndDate, " +
                 "EndTime = @EndTime, " +
-                "EventOriginatorId = @EventOriginatorId " +
+               // "EventOriginatorId = @EventOriginatorId " +
                 "WHERE EventId = @EventId";
             // sets sql execute to int value representing rows affected
             int result = await db.ExecuteAsync(sql, new { eventToUpdate.EventId, 
                 eventToUpdate.EventName, 
-                eventToUpdate.EventDiscription, 
+               // eventToUpdate.EventDiscription, 
                 eventToUpdate.AllDayEvent, 
                 eventToUpdate.StartDate, 
                 eventToUpdate.StartTime, 
                 eventToUpdate.EndDate, 
                 eventToUpdate.EndTime, 
-                eventToUpdate.EventOriginatorId });
+               // eventToUpdate.EventOriginatorId 
+            });
             return result > 0;
         }
    }
@@ -150,7 +152,7 @@ public class Repo
         }
     }
 
-    public async Task<AddEventModel> GetSessionIdAsync(int sessionId)
+    public async Task<Session> GetSessionIdAsync(int sessionId)
     {
         using (var db = Connection)
         {
@@ -160,7 +162,7 @@ public class Repo
         }
     }
 
-    public async Task<int> CreateSession(SessionModel newSession)
+    public async Task<int> CreateSession(Session newSession)
     {
         using (var db = Connection)
         {
@@ -185,7 +187,7 @@ public class Repo
         }
     }
 
-    public async Task<bool> UpdateSession(SessionModel sessionToUpdate)
+    public async Task<bool> UpdateSession(Session sessionToUpdate)
     {
         using (var db = Connection)
         {
@@ -230,7 +232,7 @@ public class Repo
         }
     }
 
-    public async Task<AddEventModel> GetProfileByIdAsync(int profileId)
+    public async Task<Profile> GetProfileByIdAsync(int profileId)
     {
         using (var db = Connection)
         {

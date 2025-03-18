@@ -7,7 +7,6 @@ using System.Data;
 using Npgsql;
 using System.Threading.Tasks;
 using DDetective.Models;
-using DDetective.ViewModels;
 using System.Security.Policy;
 using DDetective.Services;
 
@@ -21,23 +20,23 @@ public class Domain
     }
 
     // --------- Events Logic ---------
-    public async Task<IEnumerable<AddEventModel>> GetAllEvents()
+    public async Task<IEnumerable<Event>> GetAllEvents()
     {
-        return await _repo.GetAllEventsAsync();
+        return await _repo.GetAllEvents();
     }
 
-    public async Task<AddEventModel> GetEventById(int eventId)
+    public async Task<Event> GetEventById(int eventId)
     {
-        return await _repo.GetEventByIdAsync(eventId);
+        return await _repo.GetEventById(eventId);
     }
 
-    public async Task<int> CreateEvent(AddEventModel newEvent)
+    public async Task<int> CreateEvent(Event newEvent)
     {
-        return await _repo.CreateEventAsync(newEvent);
+        return await _repo.CreateEvent(newEvent);
     }
 
     // View Model for validation???
-    public async Task<bool> UpdateEvent(AddEventModel eventToUpdate)
+    public async Task<bool> UpdateEvent(Event eventToUpdate)
     {
         if (eventToUpdate.AllDayEvent)
         {
@@ -65,22 +64,22 @@ public class Domain
     }
 
     // --------- Sessions Logic ---------
-    public async Task<IEnumerable<SessionModel>> GetAllSessionsAsync()
+    public async Task<IEnumerable<Session>> GetAllSessionsAsync()
     {
         return await _repo.GetAllSessionsAsync();
     }
 
-    public async Task<SessionModel> GetSessionByIdAsync(int sessionId)
+    public async Task<Session> GetSessionByIdAsync(int sessionId)
     {
         return await _repo.GetSessionIdAsync(sessionId);
     }
 
-    public async Task<int> CreateSessionAsync(SessionModel newSession)
+    public async Task<int> CreateSessionAsync(Session newSession)
     {
         return await _repo.CreateSession(newSession);
     }
 
-    public async Task<bool> UpdateSessionAsync(SessionModel sessionToUpdate)
+    public async Task<bool> UpdateSessionAsync(Session sessionToUpdate)
     {
         return await _repo.UpdateSession(sessionToUpdate);
     }

@@ -10,7 +10,7 @@ namespace DDetective.Endpoints
 {
     public static class Endpoints
     {
-        public static IEndpointRouteBuilder Endpoints (this IEndpointRouteBuilder endpoints)
+        public static IEndpointRouteBuilder MapEndpoints (this IEndpointRouteBuilder endpoints)
         {
             // -------------------------
             // EVENT ENDPOINTS
@@ -31,13 +31,14 @@ namespace DDetective.Endpoints
             });
 
             // GET (create) an event
-            endpoints.MapGet("/events", async (AddEventModel newEvent, Domain domain))
+            endpoints.MapPost("/events", async (Event newEvent, Domain domain) =>
             {
-
-            };
+                int newId = await domain.CreateEvent(newEvent);
+                return Results.Created($"/events/{newId}", newEvent);
+            });
 
             // POST (create) an event
-            endpoints.MapPost("/events", async (AddEventModel newEvent, Domain domain) =>
+            endpoints.MapPost("/events", async (Event newEvent, Domain domain) =>
             {
                 int newId = await domain.CreateEvent(newEvent);
                 // Return a 201 Created response with a location header.
@@ -45,7 +46,7 @@ namespace DDetective.Endpoints
             });
 
             // PUT (update) an event
-            endpoints.MapPut("/events/{id:int}", async (int id, AddEventModel updateEvent, Domain domain) =>
+            endpoints.MapPut("/events/{id:int}", async (int id, Event updateEvent, Domain domain) =>
             {
                 // Ensure the update model has the correct EventId.
                 updateEvent.EventId = id;

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DDetective.Models
 {
-    public class SessionModel
+    public class Session
     {
         [Key]
         public int SessionId { get; set; }
@@ -11,9 +11,9 @@ namespace DDetective.Models
         public string SessionToken { get; set; }
         public DateTime ExpirationDate { get; set; }
 
-        public SessionModel() { }
+        public Session() { }
 
-        public SessionModel(int sessionId, string sessionName, string sessionToken, DateTime expirationDate)
+        public Session(int sessionId, string sessionName, string sessionToken, DateTime expirationDate)
         {
             SessionId = sessionId;
             SessionName = sessionName;

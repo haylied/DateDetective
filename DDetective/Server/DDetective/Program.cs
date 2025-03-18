@@ -27,7 +27,7 @@ namespace DDetective
                     });
             });
 
-            // ENTITY FRAMEWORK:  (remove)
+            // ENTITY FRAMEWORK:  (will need to remove)
             //builder.Services.AddDbContext<EventDbContext>(options =>
             //    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
 
@@ -51,7 +51,7 @@ namespace DDetective
 
             //MINIMAL API ENDPOINTS - I think
 
-            Endpoints.Map(app);
+            app.MapEndpoints();
 
             //--------------------------------//
 
