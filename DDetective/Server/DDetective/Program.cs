@@ -35,7 +35,7 @@ namespace DDetective
 
 
 
-            builder.Services.AddDatabaseDeveloperPageExceptionFilter();;
+            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddControllersWithViews();
 

@@ -30,12 +30,12 @@ namespace DDetective.Endpoints
                 return eventsById is not null ? Results.Ok(eventsById) : Results.NotFound();
             });
 
-            // GET (create) an event
-            endpoints.MapPost("/events", async (Event newEvent, Domain domain) =>
-            {
-                int newId = await domain.CreateEvent(newEvent);
-                return Results.Created($"/events/{newId}", newEvent);
-            });
+            //// POST (create) an event
+            //endpoints.MapPost("/events", async (Event newEvent, Domain domain) =>
+            //{
+            //    int newId = await domain.CreateEvent(newEvent);
+            //    return Results.Created($"/events/{newId}", newEvent);
+            //});
 
             // POST (create) an event
             endpoints.MapPost("/events", async (Event newEvent, Domain domain) =>
