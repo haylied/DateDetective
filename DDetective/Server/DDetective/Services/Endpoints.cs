@@ -29,33 +29,34 @@ namespace DDetective.Services
             // GET event by id
             endpoints.MapGet("/event/{id}", async (int id, Domain domain) =>
             {
-                var eventsById = await domain.GetEventById(id);
-                return eventsById is not null ? Results.Ok(eventsById) : Results.NotFound();
+                var eventById = await domain.GetEventById(id);
+                return eventById is not null ? Results.Ok(eventById) : Results.NotFound();
             });
 
             // POST (create) an event
             endpoints.MapPost("/event", async (Event newEvent, Domain domain) =>
             {
-                int newId = await domain.CreateEvent(newEvent);
+                // Validation Here?
+                int newEventCreated = await domain.CreateEvent(newEvent);
                 // Return a 201 Created response with a location header.
-                // return Results.Created($"/events/created", newEvent);
-                return Results.Created($"/events/{newId}", newEvent);
+                return Results.Created($"/event/created", newEvent);
             });
 
             // PUT (update) an event ... {id} or {id:int} ??? (same for all methods below)
             endpoints.MapPut("/event/{id}", async (int id, Event updateEvent, Domain domain) =>
             {
-                // Ensure the update model has the correct EventId.
-                //updateEvent.EventId = id;
+                // Validation Here?
                 bool updated = await domain.UpdateEvent(updateEvent);
                 return updated ? Results.NoContent() : Results.NotFound();
             });
 
-            // DELETE an event
+            // DELETE an event by ID
             endpoints.MapDelete("/event/delete", async (int id, Domain domain) =>
             {
+                // Validation Here?
                 bool deleted = await domain.DeleteEvent(id);
                 return deleted ? Results.Ok() : Results.NotFound();
+                // return to what route?
             });
 
             // -------------------------
@@ -72,29 +73,30 @@ namespace DDetective.Services
             // GET session by id
             endpoints.MapGet("/session/{id}", async (int id, Domain domain) =>
             {
-                var session = await domain.GetSessionById(id);
-                return session is not null ? Results.Ok(session) : Results.NotFound();
+                var sessionById = await domain.GetSessionById(id);
+                return sessionById is not null ? Results.Ok(sessionById) : Results.NotFound();
             });
 
             // POST (create) a session
             endpoints.MapPost("/session", async (Session newSession, Domain domain) =>
             {
-                int newId = await domain.CreateSession(newSession);
-                return Results.Created($"/sessions/{newId}", newSession);
+                // Validation Here?
+                int newSessionCreated = await domain.CreateSession(newSession);
+                return Results.Created($"/session/created", newSession);
             });
 
             // PUT (update) a session
             endpoints.MapPut("/session/{id}", async (int id, Session sessionToUpdate, Domain domain) =>
             {
-                // Optionally ensure the session ID is correct.
-                //sessionToUpdate.SessionId = id;
+                // Validation Here?
                 bool updated = await domain.UpdateSession(sessionToUpdate);
                 return updated ? Results.NoContent() : Results.NotFound();
             });
 
-            // DELETE a session
+            // DELETE a session by ID
             endpoints.MapDelete("/session/delete", async (int id, Domain domain) =>
             {
+                // Validation Here?
                 bool deleted = await domain.DeleteSession(id);
                 return deleted ? Results.Ok() : Results.NotFound();
             });
@@ -120,21 +122,23 @@ namespace DDetective.Services
             // POST (create) a profile
             endpoints.MapPost("/profile", async (Profile newProfile, Domain domain) =>
             {
-                int newId = await domain.CreateProfile(newProfile);
-                return Results.Created($"/profiles/{newId}", newProfile);
+                // Validation Here?
+                int newProfileCreated = await domain.CreateProfile(newProfile);
+                return Results.Created($"/profile/created", newProfile);
             });
 
             // PUT (update) a profile
             endpoints.MapPut("/profile/{id}", async (int id, Profile profileToUpdate, Domain domain) =>
             {
-                //profileToUpdate.ProfileId = id;
+                // Validation Here?
                 bool updated = await domain.UpdateProfile(profileToUpdate);
                 return updated ? Results.NoContent() : Results.NotFound();
             });
 
-            // DELETE a profile
+            // DELETE a profile by ID
             endpoints.MapDelete("/profile/delete", async (int id, Domain domain) =>
             {
+                // Validation Here?
                 bool deleted = await domain.DeleteProfile(id);
                 return deleted ? Results.Ok() : Results.NotFound();
             });

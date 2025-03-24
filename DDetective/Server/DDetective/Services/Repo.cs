@@ -89,6 +89,7 @@ namespace DDetective.Services
                     "@endDate, " +
                     "@endTime) ";
                    // "@eventOriginiatorId)";
+                   //"RETURN EventId = eventId");
 
                 return await db.ExecuteAsync(sql, new {
                     newEvent.EventId,
