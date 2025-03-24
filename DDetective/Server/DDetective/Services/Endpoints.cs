@@ -7,13 +7,11 @@ using Microsoft.AspNetCore.Routing;
 using DDetective.Models;
 using DDetective.Services;
 
-
-// namespace DDetective.Services.Endpoints
 namespace DDetective.Services
 {
     public static class Endpoints
     {
-        public static IEndpointRouteBuilder MapEndpoints (this IEndpointRouteBuilder endpoints)
+        public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder endpoints)
         {
             // -------------------------
             // EVENT ENDPOINTS
@@ -151,3 +149,4 @@ namespace DDetective.Services
             return endpoints;
         }
     }
+}

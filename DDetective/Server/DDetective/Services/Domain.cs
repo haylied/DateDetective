@@ -41,6 +41,10 @@ namespace DDetective.Services
                 newEvent.StartTime = newEvent.StartDate.Date;
                 // Set end time to 23:59:59 of the end date.
                 newEvent.EndTime = newEvent.EndDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
+            } else
+            {
+                newEvent.StartTime = null;
+                newEvent.EndTime = null;
             }
 
             return await _repo.CreateEvent(newEvent);
@@ -55,6 +59,10 @@ namespace DDetective.Services
                 eventToUpdate.StartTime = eventToUpdate.StartDate.Date;
                 // Set end time to 23:59:59 of the end date.
                 eventToUpdate.EndTime = eventToUpdate.EndDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
+            } else
+            {
+                eventToUpdate.StartTime = null;
+                eventToUpdate.EndTime = null;
             }
 
             return await _repo.UpdateEvent(eventToUpdate);
@@ -140,9 +148,11 @@ namespace DDetective.Services
                 return false;
 
             }
-
-            Console.WriteLine($"Profile {profileId} deleted.");
-            return await _repo.DeleteProfile(profileId);
+            else
+            {
+                Console.WriteLine($"Profile {profileId} deleted.");
+                return await _repo.DeleteProfile(profileId);
+            }
         }
     }
 }

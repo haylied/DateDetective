@@ -1,11 +1,12 @@
+using Npgsql;
 using Dapper;
-using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using Npgsql;
 using System.Threading.Tasks;
-using DDetective.Models;
 using System.Security.Policy;
+using Microsoft.Extensions.Configuration;
+using DDetective.Models;
 
 
 namespace DDetective.Services
@@ -86,22 +87,23 @@ namespace DDetective.Services
                     "@startDate, " +
                     "@startTime, " +
                     "@endDate, " +
-                    "@endTime) " +
+                    "@endTime) ";
                    // "@eventOriginiatorId)";
 
-            return await db.ExecuteAsync(sql, new {
-                newEvent.EventId,
-                newEvent.EventName,
-                // newEvent.EventDiscription, 
-                newEvent.AllDayEvent,
-                newEvent.StartDate,
-                newEvent.StartTime,
-                newEvent.EndDate,
-                newEvent.EndTime,
-                // newEvent.EventOriginatorId
-            });
+                return await db.ExecuteAsync(sql, new {
+                    newEvent.EventId,
+                    newEvent.EventName,
+                    // newEvent.EventDiscription, 
+                    newEvent.AllDayEvent,
+                    newEvent.StartDate,
+                    newEvent.StartTime,
+                    newEvent.EndDate,
+                    newEvent.EndTime,
+                    // newEvent.EventOriginatorId
+                });
             }
         }
+
         // what should this be? Task<int>??
         public async Task<bool> UpdateEvent(Event eventToUpdate)
         {
@@ -167,7 +169,7 @@ namespace DDetective.Services
             {
                 await db.Open();
                 string sql = "SELECT * FROM Session WHERE SessionId = @sessionId";
-                return await db.QueryAsync<Session>(sql, new { SessionId = sessionId };
+                return await db.QueryAsync<Session>(sql, new { SessionId = sessionId });
             }
         }
 
@@ -190,11 +192,13 @@ namespace DDetective.Services
                     "RETURNING SessionId";
                 // may need to use QuerySingleAsync<int>() to return single Id
 
-                return await db.ExecuteAsync(sql, new {
+                return await db.ExecuteAsync(sql, new
+                {
                     newSession.SessionId,
                     newSession.SessionName,
                     newSession.SessionToken,
-                    newSession.ExpirationDate })
+                    newSession.ExpirationDate
+                });
             }
         }
 

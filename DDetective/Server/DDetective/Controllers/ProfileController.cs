@@ -14,4 +14,5 @@ namespace DDetective.Controllers
         public ProfileController() { }
 
         //some code
+    }
 }
