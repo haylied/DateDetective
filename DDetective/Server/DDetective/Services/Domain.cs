@@ -22,7 +22,7 @@ namespace DDetective.Services
             _repo = repo;
         }
 
-        // --------- Events Logic ---------
+        // --------- Events Logic --------- //
         public async Task<IEnumerable<Event>> GetAllEvents()
         {
             return await _repo.GetAllEvents();
@@ -77,12 +77,14 @@ namespace DDetective.Services
                 Console.WriteLine($"Event {eventId} not found.");
                 return false;
             }
-
-            Console.WriteLine($"Event {eventId} deleted.");
-            return await _repo.DeleteEvent(eventId);
+            else
+            {
+                Console.WriteLine($"Event {eventId} deleted.");
+                return await _repo.DeleteEvent(eventId);
+            }
         }
 
-        // --------- Sessions Logic ---------
+        // --------- Sessions Logic --------- //
         public async Task<IEnumerable<Session>> GetAllSessions()
         {
             return await _repo.GetAllSessions();
@@ -112,12 +114,14 @@ namespace DDetective.Services
                 Console.WriteLine($"Session {sessionId} not found.");
                 return false;
             }
-
-            Console.WriteLine($"Session {sessionId} deleted.");
-            return await _repo.DeleteSession(sessionId);
+            else
+            {
+                Console.WriteLine($"Session {sessionId} deleted.");
+                return await _repo.DeleteSession(sessionId);
+            }
         }
 
-        // --------- Profiles Logic ---------
+        // --------- Profiles Logic --------- //
         public async Task<IEnumerable<Profile>> GetAllProfiles()
         {
             return await _repo.GetAllProfiles();
