@@ -1,137 +1,162 @@
 using Dapper;
+using Npgsql;
 using System;
-using Microsoft.Extensions.Configuration;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using Npgsql;
-using System.Threading.Tasks;
-using DDetective.Models;
-using DDetective.ViewModels;
 using System.Security.Policy;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using DDetective.Models;
 using DDetective.Services;
 
-public class Domain
+namespace DDetective.Services
 {
-    private readonly Repo _repo;
 
-    public Domain(Repo repo)
+    public class Domain
     {
-        _repo = repo;
-    }
+        private readonly Repo _repo;
 
-    // --------- Events Logic ---------
-    public async Task<IEnumerable<AddEventModel>> GetAllEvents()
-    {
-        return await _repo.GetAllEventsAsync();
-    }
-
-    public async Task<AddEventModel> GetEventById(int eventId)
-    {
-        return await _repo.GetEventByIdAsync(eventId);
-    }
-
-    public async Task<int> CreateEvent(AddEventModel newEvent)
-    {
-        return await _repo.CreateEventAsync(newEvent);
-    }
-
-    // View Model for validation???
-    public async Task<bool> UpdateEvent(AddEventViewModel eventToUpdate)
-    {
-        if (eventToUpdate.AllDayEvent)
+        public Domain(Repo repo)
         {
-            // Set start time to midnight of the start date.
-            eventToUpdate.StartTime = eventToUpdate.StartDate.Date;
-            // Set end time to 23:59:59 of the end date.
-            eventToUpdate.EndTime = eventToUpdate.EndDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
+            _repo = repo;
         }
 
-        return await _repo.UpdateEvent(eventToUpdate);
-    }
-
-    public async Task<bool> DeleteEvent(int eventId)
-    {
-        var existingEvent = await _repo.GetEventByIdAsync(eventId);
-
-        if (existingEvent == null)
+        // --------- Events Logic --------- //
+        public async Task<IEnumerable<Event>> GetAllEvents()
         {
-            Console.WriteLine($"Event {eventId} not found.");
-            return false;
+            return await _repo.GetAllEvents();
         }
 
-        Console.WriteLine($"Event {eventId} deleted.");
-        return await _repo.DeleteEventAsync(eventId);
-    }
-
-    // --------- Sessions Logic ---------
-    public async Task<IEnumerable<SessionModel>> GetAllSessionsAsync()
-    {
-        return await _repo.GetAllSessionsAsync();
-    }
-
-    public async Task<SessionModel> GetSessionByIdAsync(int sessionId)
-    {
-        return await _repo.GetSessionIdAsync(sessionId);
-    }
-
-    public async Task<int> CreateSessionAsync(SessionModel newSession)
-    {
-        return await _repo.CreateSession(newSession);
-    }
-
-    public async Task<bool> UpdateSessionAsync(SessionModel sessionToUpdate)
-    {
-        return await _repo.UpdateSession(sessionToUpdate);
-    }
-
-    public async Task<bool> DeleteSessionAsync(int sessionId)
-    {
-        var existingSession = await _repo.GetSessionByIdAsync(sessionId);
-
-        if (existingSession == null)
+        public async Task<Event> GetEventById(int eventId)
         {
-            Console.WriteLine($"Session {sessionId} not found.");
-            return false;
+            return await _repo.GetEventById(eventId);
         }
 
-        Console.WriteLine($"Session {sessionId} deleted.");
-        return await _repo.DeleteSession(sessionId);
-    }
-
-    // --------- Profiles Logic ---------
-    public async Task<IEnumerable<Profile>> GetAllProfilesAsync()
-    {
-        return await _repo.GetAllProfilesAsync();
-    }
-
-    public async Task<Profile> GetProfileByIdAsync(int profileId)
-    {
-        return await _repo.GetProfileByIdAsync(profileId);
-    }
-
-    public async Task<int> CreateProfileAsync(Profile newProfile)
-    {
-        return await _repo.CreateProfile(newProfile);
-    }
-
-    public async Task<bool> UpdateProfileAsync(Profile profileToUpdate)
-    {
-        return await _repo.UpdateProfile(profileToUpdate);
-    }
-
-    public async Task<bool> DeleteProfileAsync(int profileId)
-    {
-        var existingProfile = await _repo.GetProfileByIdAsync(profileId);
-
-        if (existingProfile == null)
+        public async Task<int> CreateEvent(Event newEvent)
         {
-            Console.WriteLine($"Profile {profileId} not found.");
-            return false;
+            if (newEvent.AllDayEvent)
+            {
+                // Set start time to midnight of the start date.
+                newEvent.StartTime = newEvent.StartDate.Date;
+                // Set end time to 23:59:59 of the end date.
+                newEvent.EndTime = newEvent.EndDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
+            } else
+            {
+                newEvent.StartTime = null;
+                newEvent.EndTime = null;
+            }
 
+            return await _repo.CreateEvent(newEvent);
         }
 
-        Console.WriteLine($"Profile {profileId} deleted.");
-        return await _repo.DeleteProfile(profileId);
+        public async Task<bool> UpdateEvent(Event eventToUpdate)
+        {
+            // REFACTOR METHOD
+            if (eventToUpdate.AllDayEvent)
+            {
+                // Set start time to midnight of the start date.
+                eventToUpdate.StartTime = eventToUpdate.StartDate.Date;
+                // Set end time to 23:59:59 of the end date.
+                eventToUpdate.EndTime = eventToUpdate.EndDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
+            } else
+            {
+                eventToUpdate.StartTime = null;
+                eventToUpdate.EndTime = null;
+            }
+
+            return await _repo.UpdateEvent(eventToUpdate);
+        }
+
+        public async Task<bool> DeleteEvent(int eventId)
+        {
+            var existingEvent = await _repo.GetEventById(eventId);
+
+            if (existingEvent == null)
+            {
+                Console.WriteLine($"Event {eventId} not found.");
+                return false;
+            }
+            else
+            {
+                Console.WriteLine($"Event {eventId} deleted.");
+                return await _repo.DeleteEvent(eventId);
+            }
+        }
+
+        // --------- Sessions Logic --------- //
+        public async Task<IEnumerable<Session>> GetAllSessions()
+        {
+            return await _repo.GetAllSessions();
+        }
+
+        public async Task<Session> GetSessionById(int sessionId)
+        {
+            return await _repo.GetSessionById(sessionId);
+        }
+
+        public async Task<int> CreateSession(Session newSession)
+        {
+            return await _repo.CreateSession(newSession);
+        }
+
+        public async Task<bool> UpdateSession(Session sessionToUpdate)
+        {
+            return await _repo.UpdateSession(sessionToUpdate);
+        }
+
+        public async Task<bool> DeleteSession(int sessionId)
+        {
+            var existingSession = await _repo.GetSessionById(sessionId);
+
+            if (existingSession == null)
+            {
+                Console.WriteLine($"Session {sessionId} not found.");
+                return false;
+            }
+            else
+            {
+                Console.WriteLine($"Session {sessionId} deleted.");
+                return await _repo.DeleteSession(sessionId);
+            }
+        }
+
+        // --------- Profiles Logic --------- //
+        public async Task<IEnumerable<Profile>> GetAllProfiles()
+        {
+            return await _repo.GetAllProfiles();
+        }
+
+        public async Task<Profile> GetProfileById(int profileId)
+        {
+            return await _repo.GetProfileById(profileId);
+        }
+
+        public async Task<int> CreateProfile(Profile newProfile)
+        {
+            return await _repo.CreateProfile(newProfile);
+        }
+
+        public async Task<bool> UpdateProfile(Profile profileToUpdate)
+        {
+            return await _repo.UpdateProfile(profileToUpdate);
+        }
+
+        public async Task<bool> DeleteProfile(int profileId)
+        {
+            var existingProfile = await _repo.GetProfileById(profileId);
+
+            if (existingProfile == null)
+            {
+                Console.WriteLine($"Profile {profileId} not found.");
+                return false;
+
+            }
+            else
+            {
+                Console.WriteLine($"Profile {profileId} deleted.");
+                return await _repo.DeleteProfile(profileId);
+            }
+        }
     }
 }
