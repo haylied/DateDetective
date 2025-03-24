@@ -24,18 +24,11 @@ namespace DDetective.Endpoints
             });
 
             // GET event by id
-            endpoints.MapGet("/events/{id:int}", async (int id, Domain domain) =>
+            endpoints.MapGet("/events/{id}", async (int id, Domain domain) =>
             {
                 var eventsById = await domain.GetEventById(id);
                 return eventsById is not null ? Results.Ok(eventsById) : Results.NotFound();
             });
-
-            //// POST (create) an event
-            //endpoints.MapPost("/events", async (Event newEvent, Domain domain) =>
-            //{
-            //    int newId = await domain.CreateEvent(newEvent);
-            //    return Results.Created($"/events/{newId}", newEvent);
-            //});
 
             // POST (create) an event
             endpoints.MapPost("/events", async (Event newEvent, Domain domain) =>
@@ -45,8 +38,8 @@ namespace DDetective.Endpoints
                 return Results.Created($"/events/{newId}", newEvent);
             });
 
-            // PUT (update) an event
-            endpoints.MapPut("/events/{id:int}", async (int id, Event updateEvent, Domain domain) =>
+            // PUT (update) an event ... {id} or {id:int} ??? (same for all methods below)
+            endpoints.MapPut("/events/{id}", async (int id, Event updateEvent, Domain domain) =>
             {
                 // Ensure the update model has the correct EventId.
                 updateEvent.EventId = id;
@@ -55,7 +48,7 @@ namespace DDetective.Endpoints
             });
 
             // DELETE an event
-            endpoints.MapDelete("/events/{id:int}", async (int id, Domain domain) =>
+            endpoints.MapDelete("/events/{id}", async (int id, Domain domain) =>
             {
                 try
                 {
@@ -80,21 +73,21 @@ namespace DDetective.Endpoints
             });
 
             // GET session by id
-            endpoints.MapGet("/sessions/{id:int}", async (int id, Domain domain) =>
+            endpoints.MapGet("/sessions/{id}", async (int id, Domain domain) =>
             {
                 var session = await domain.GetSessionByIdAsync(id);
                 return session is not null ? Results.Ok(session) : Results.NotFound();
             });
 
             // POST (create) a session
-            endpoints.MapPost("/sessions", async (SessionModel newSession, Domain domain) =>
+            endpoints.MapPost("/sessions", async (Session newSession, Domain domain) =>
             {
                 int newId = await domain.CreateSessionAsync(newSession);
                 return Results.Created($"/sessions/{newId}", newSession);
             });
 
             // PUT (update) a session
-            endpoints.MapPut("/sessions/{id:int}", async (int id, SessionModel sessionToUpdate, Domain domain) =>
+            endpoints.MapPut("/sessions/{id}", async (int id, Session sessionToUpdate, Domain domain) =>
             {
                 // Optionally ensure the session ID is correct.
                 sessionToUpdate.SessionId = id;
@@ -103,7 +96,7 @@ namespace DDetective.Endpoints
             });
 
             // DELETE a session
-            endpoints.MapDelete("/sessions/{id:int}", async (int id, Domain domain) =>
+            endpoints.MapDelete("/sessions/{id}", async (int id, Domain domain) =>
             {
                 bool deleted = await domain.DeleteSessionAsync(id);
                 return deleted ? Results.NoContent() : Results.NotFound();
@@ -121,7 +114,7 @@ namespace DDetective.Endpoints
             });
 
             // GET profile by id
-            endpoints.MapGet("/profiles/{id:int}", async (int id, Domain domain) =>
+            endpoints.MapGet("/profiles/{id}", async (int id, Domain domain) =>
             {
                 var profile = await domain.GetProfileByIdAsync(id);
                 return profile is not null ? Results.Ok(profile) : Results.NotFound();
@@ -135,7 +128,7 @@ namespace DDetective.Endpoints
             });
 
             // PUT (update) a profile
-            endpoints.MapPut("/profiles/{id:int}", async (int id, Profile profileToUpdate, Domain domain) =>
+            endpoints.MapPut("/profiles/{id}", async (int id, Profile profileToUpdate, Domain domain) =>
             {
                 profileToUpdate.ProfileId = id;
                 bool updated = await domain.UpdateProfileAsync(profileToUpdate);
@@ -143,7 +136,7 @@ namespace DDetective.Endpoints
             });
 
             // DELETE a profile
-            endpoints.MapDelete("/profiles/{id:int}", async (int id, Domain domain) =>
+            endpoints.MapDelete("/profiles/{id}", async (int id, Domain domain) =>
             {
                 bool deleted = await domain.DeleteProfileAsync(id);
                 return deleted ? Results.NoContent() : Results.NotFound();

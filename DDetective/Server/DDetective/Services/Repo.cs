@@ -39,7 +39,7 @@ public class Repo
         {
             await db.Open();
             string sql = "SELECT * FROM Event";
-            return await db.QueryAsync<AddEventModel>(sql).ToList(); 
+            return await db.QueryAsync<Event>(sql).ToList(); 
             // close database at end ?
         }
     }
@@ -51,7 +51,7 @@ public class Repo
             await db.Open();
             string sql = "SELECT * FROM Event " +
                 "WHERE EventId = @eventId";
-            return await db.QueryAsync<AddEventModel>(sql, new { eventId = eventId };
+            return await db.QueryAsync<Event>(sql, new { eventId = eventId };
         }
     }
 
@@ -148,7 +148,7 @@ public class Repo
         {
             await db.Open();
             string sql = "SELECT * FROM Session";
-            return await db.QueryAsync<SessionModel>(sql).ToList();
+            return await db.QueryAsync<Session>(sql).ToList();
         }
     }
 
@@ -158,7 +158,7 @@ public class Repo
         {
             await db.Open();
             string sql = "SELECT * FROM Session WHERE SessionId = @sessionId";
-            return await db.QueryAsync<SessionModel>(sql, new { SessionId = sessionId };
+            return await db.QueryAsync<Session>(sql, new { SessionId = sessionId };
         }
     }
 

@@ -40,7 +40,7 @@ namespace DDetective
             builder.Services.AddControllersWithViews();
 
 
-            // Register Classes Via DI for modular use?
+            // Register Classes via DI for Modular use?
             builder.Services.AddScoped<Repo>();
             builder.Services.AddScoped<Domain>();
 
