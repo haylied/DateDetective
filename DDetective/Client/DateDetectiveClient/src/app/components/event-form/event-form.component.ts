@@ -83,6 +83,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 })
 export class EventFormComponent implements OnInit {
+  //eventForm = FormGroup;
   eventForm: FormGroup;
   appName = 'DateDetective';
 
