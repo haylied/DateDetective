@@ -9,17 +9,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './session.component.scss'
 })
 export class SessionComponent implements OnInit{
-  sessionForm = FormGroup;
+  sessionForm!: FormGroup;
   appName = 'DateDetective';
 
   constructor(private fb: FormBuilder)
   {
-    this.sessionForm= this.fb.group({sessionToken:['', Validators.required]});
+    this.sessionForm= this.fb.group({
+      sessionToken:['', Validators.required]
+    });
   }
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  ngOnInit(): void {}
 
   submitForm(): void {
     if(this.sessionForm.valid)

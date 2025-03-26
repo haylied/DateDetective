@@ -1,6 +1,18 @@
-<h3>Session</h3>
-<form>
-    <label for="sessionToken">Session Token</label>
-    <input id="sessionToken" type="text">
-    <button type="submit" ng="OnSubmit()">Submit</button>
-</form>
+<div class="session-container">
+    <h2>Session Manager</h2>
+  
+    <div class="form-group">
+      <label for="token">Session Token</label>
+      <input
+        id="token"
+        type="text"
+        [(ngModel)]="sessionToken"
+        placeholder="Enter session token"
+      />
+    </div>
+  
+    <div class="button-group">
+      <button (click)="submitToken()">Submit</button>
+      <button (click)="createNewSession()">Create New Session</button>
+    </div>
+  </div>
