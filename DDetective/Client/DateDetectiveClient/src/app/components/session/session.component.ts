@@ -21,9 +21,10 @@ export class SessionComponent implements OnInit{
 
   ngOnInit(): void {}
 
-  submitForm(): void {
+  submitSessionToken(): void {
     if(this.sessionForm.valid)
     {
+      //take to events
       console.log(this.sessionForm.value);
     }
   }
