@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
   })
 
+  
+
   export class SessionService {
 
     // Replace with your backend API URL
@@ -13,11 +15,8 @@ import { Observable } from 'rxjs';
   
     constructor(private http: HttpClient) { }
   
-    createSessionAndProfile(): Observable<any> {
-      // Modify the payload if your backend requires additional data
-      const payload = {
-        // example: user: { name: 'New User', ... }
-      };
-      return this.http.post(`${this.apiUrl}/session`, payload);
+    createSession(): Observable<any> {
+        // sends empty object as backend generates the session token
+      return this.http.post(`${this.apiUrl}/session`, {});
     }
   }

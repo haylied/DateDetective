@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-session',
@@ -13,12 +14,15 @@ export class SessionComponent implements OnInit{
   sessionForm!: FormGroup;
   appName = 'DateDetective';
 
-  constructor(private fb: FormBuilder, private http: HttpClient)
-  {
+  constructor(
+    private fb: FormBuilder, 
+    private http: HttpClient,
+    private sessionService: SessionService
+  ) {
     this.sessionForm= this.fb.group({
       sessionToken:['', Validators.required]
     });
-  }
+    }
 
   ngOnInit(): void {}
 
@@ -30,6 +34,17 @@ export class SessionComponent implements OnInit{
     }
   }
 
+  onCreateSession(): void {
+    // Use subscribe to handle the observable returned by createSession().
+    this.sessionService.createSession().subscribe(
+      (sessionData: any) => {
+        // Expecting the backend to return an object with SessionToken
+        this.sessionForm.patchValue({
+          sessionToken: sessionData.SessionToken
+        });
+        console.log('Session created:', sessionData);
+      }
+    );
 /*
   //  !--- this method assumes profileId based on activating new session upon profile page
   newSessionToken(): void {
@@ -37,10 +52,5 @@ export class SessionComponent implements OnInit{
     // grab session token from database and display on page (latest created session)
   }
 */
-
- // !--- this method creates a new session and profile upon click
-  newSessionTokenAndProfile(): void {}
-
+  }
 }
-
-
