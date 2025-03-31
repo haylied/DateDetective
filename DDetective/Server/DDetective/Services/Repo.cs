@@ -181,27 +181,32 @@ namespace DDetective.Services
                 await db.Open();
                 // need to double check on sql syntax
                 string sql = "INSERT INTO Session " +
-                    "(SessionId, " +
+                    "(" +
+                    //"SessionId, " +
                     //"SessionName, " +
-                    "SessionToken, " +
+                    "SessionToken " +
                     //"ExpirationTime" +
                     ") " +
                     "VALUES " +
-                    "(@sessionId, " +
+                    "(" +
+                    //"@sessionId, " +
                    // "@sessionName, " +
-                    "@sessionToken, " +
+                    "@sessionToken " +
                     //"@ExpirationTime" +
                     ") " +
                     "RETURNING SessionId";
                 // may need to use QuerySingleAsync<int>() to return single Id
+                return await db.QuerySingleAsync<int>(sql, new { newSession.SessionToken });
 
-                return await db.ExecuteAsync(sql, new
-                {
-                    newSession.SessionId,
-                    //newSession.SessionName,
-                    newSession.SessionToken,
-                   // newSession.ExpirationTime
-                });
+                //return await db.ExecuteAsync(sql, new
+                //{
+                //   // newSession.SessionId,
+                //    //newSession.SessionName,
+                //    newSession.SessionToken
+                //   // newSession.ExpirationTime
+
+                //    // SessionToken = newSession.SessionToken
+                //});
             }
         }
 
