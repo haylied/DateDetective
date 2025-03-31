@@ -182,23 +182,25 @@ namespace DDetective.Services
                 // need to double check on sql syntax
                 string sql = "INSERT INTO Session " +
                     "(SessionId, " +
-                    "SessionName, " +
+                    //"SessionName, " +
                     "SessionToken, " +
-                    "ExpirationDate) " +
+                    //"ExpirationTime" +
+                    ") " +
                     "VALUES " +
                     "(@sessionId, " +
-                    "@sessionName, " +
+                   // "@sessionName, " +
                     "@sessionToken, " +
-                    "@expirationDate) " +
+                    //"@ExpirationTime" +
+                    ") " +
                     "RETURNING SessionId";
                 // may need to use QuerySingleAsync<int>() to return single Id
 
                 return await db.ExecuteAsync(sql, new
                 {
                     newSession.SessionId,
-                    newSession.SessionName,
+                    //newSession.SessionName,
                     newSession.SessionToken,
-                    newSession.ExpirationDate
+                   // newSession.ExpirationTime
                 });
             }
         }
@@ -210,16 +212,16 @@ namespace DDetective.Services
                 await db.Open();
                 string sql = "UPDATE Session " +
                     "SET SessionId = @SessionId, " +
-                    "SessionName = @SessionName, " +
+                   // "SessionName = @SessionName, " +
                     "SessionToken = @SessionToken, " +
-                    "ExpirationDate = @ExpirationDate " +
+                    //"ExpirationTime = @ExpirationTime " +
                     "WHERE SessionId = @SessionId";
                 int result = await db.ExecuteAsync(sql, new
                 {
                     sessionToUpdate.SessionId,
-                    sessionToUpdate.SessionName,
+                   // sessionToUpdate.SessionName,
                     sessionToUpdate.SessionToken,
-                    sessionToUpdate.ExpirationDate
+                   // sessionToUpdate.ExpirationTime                                                                                                                                                                            
                 });
                 return result > 0;
             }

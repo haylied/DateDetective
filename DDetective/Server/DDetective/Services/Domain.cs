@@ -95,8 +95,13 @@ namespace DDetective.Services
             return await _repo.GetSessionById(sessionId);
         }
 
-        public async Task<int> CreateSession(Session newSession)
+        public async Task<int> CreateSession()
         {
+            Session newSession = new Session
+            {
+                SessionToken = GenerateSessionToken(),
+            };
+
             return await _repo.CreateSession(newSession);
         }
 
@@ -119,6 +124,26 @@ namespace DDetective.Services
                 Console.WriteLine($"Session {sessionId} deleted.");
                 return await _repo.DeleteSession(sessionId);
             }
+        }
+
+        public static string GenerateSessionToken(string charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
+        {
+            int length = 10;
+
+            // separates charSet into individual, unique characters... if duplicates exist, use .Distinct()
+            var charArray = charSet.ToArray();
+
+            // sets char array to length of 10
+            char[] token = new char[length];
+
+            // loop 10 times to grab random char from charArray, cryptographically generates random integer from 0 to charArray.Length, sets to token
+            for (int i = 0; i < length; i++)
+            {
+                token[i] = charArray[RandomNumberGenerator.GetInt32(charArray.Length)];
+            }
+
+            // new string created from this array, string is returned
+            return new string(token);
         }
 
         // --------- Profiles Logic --------- //
@@ -158,5 +183,6 @@ namespace DDetective.Services
                 return await _repo.DeleteProfile(profileId);
             }
         }
+
     }
 }

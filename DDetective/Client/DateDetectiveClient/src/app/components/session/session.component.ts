@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -12,7 +13,7 @@ export class SessionComponent implements OnInit{
   sessionForm!: FormGroup;
   appName = 'DateDetective';
 
-  constructor(private fb: FormBuilder)
+  constructor(private fb: FormBuilder, private http: HttpClient)
   {
     this.sessionForm= this.fb.group({
       sessionToken:['', Validators.required]
@@ -28,6 +29,18 @@ export class SessionComponent implements OnInit{
       console.log(this.sessionForm.value);
     }
   }
+
+/*
+  //  !--- this method assumes profileId based on activating new session upon profile page
+  newSessionToken(): void {
+    // when button is selected, a new session is created w/ a unique session token
+    // grab session token from database and display on page (latest created session)
+  }
+*/
+
+ // !--- this method creates a new session and profile upon click
+  newSessionTokenAndProfile(): void {}
+
 }
 
 
