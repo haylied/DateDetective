@@ -44,7 +44,11 @@ export class SessionComponent implements OnInit{
         });
         console.log('Session created:', sessionData);
       }
-    );
+    );}
+
+    onButtonWorks(): void {
+      console.log('Button works.');
+    }
 /*
   //  !--- this method assumes profileId based on activating new session upon profile page
   newSessionToken(): void {
@@ -53,4 +57,3 @@ export class SessionComponent implements OnInit{
   }
 */
   }
-}
