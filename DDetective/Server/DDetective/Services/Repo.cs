@@ -237,25 +237,50 @@ namespace DDetective.Services
         //    }
         //}
 
-        public async Task<int> CreateSession(Session newSession)
+        //public async Task<int> CreateSession(Session newSession)
+        //{
+        //    using (var db = Connection)
+        //    {
+        //        await db.OpenAsync();
+        //        //string sql = "INSERT INTO session (sessiontoken) " +
+        //        //             "VALUES (@sessionToken) " +
+        //        //             "RETURNING sessionid";
+
+        //        string sql = "INSERT INTO session (sessiontoken) " +
+        //     "VALUES (@sessionToken) " +
+        //     "RETURNING sessionid";
+
+
+        //        return await db.QuerySingleAsync<int>(sql, new { sessionToken = newSession.SessionToken });
+        //    }
+        //}
+
+        public async Task<Session> CreateSession(Session newSession)
         {
             using (var db = Connection)
             {
                 await db.OpenAsync();
-                //string sql = "INSERT INTO session (sessiontoken) " +
-                //             "VALUES (@sessionToken) " +
-                //             "RETURNING sessionid";
-
                 string sql = "INSERT INTO session (sessiontoken) " +
-             "VALUES (@sessionToken) " +
-             "RETURNING sessionid";
+                             "VALUES (@sessionToken) " +
+                             "RETURNING sessionid, sessiontoken";
 
-
-                return await db.QuerySingleAsync<int>(sql, new { sessionToken = newSession.SessionToken });
+                // QuerySingleAsync<Session> maps the returned columns to the Session properties.
+                return await db.QuerySingleAsync<Session>(sql, new { sessionToken = newSession.SessionToken });
             }
         }
 
 
+        //public async Task<string> GrabSessionToken()
+        //{
+        //    using (var db = Connection)
+        //    {
+        //        await db.OpenAsync();
+        //        string sql = " SELECT (sessiontoken) " +
+        //            "FROM Session " +
+        //            "WHERE sessionid = @sessionId";
+        //        return await db.QuerySingleAsync<string>()
+        //    }
+        //}
 
         public async Task<bool> UpdateSession(Session sessionToUpdate)
         {

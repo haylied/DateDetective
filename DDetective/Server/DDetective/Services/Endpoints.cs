@@ -91,9 +91,12 @@ namespace DDetective.Services
             // POST (create) a session
             endpoints.MapPost("/session", async (Domain domain) =>
             {
-                int newSessionCreated = await domain.CreateSession();
+                Session newSessionCreated = await domain.CreateSession();
                 // Return a 201 Created response with the URI for the newly created session.
-                return Results.Created($"/session/{newSessionCreated}", new { sessionId = newSessionCreated });
+                //return Results.Created($"/session/{newSessionCreated}", new { sessionId = newSessionCreated, sessionToken = newSessionCreated });
+                //return Results.Created($"/session/{newSessionCreated}", new { sessionId = newSessionCreated });
+                return Results.Created($"/session/{newSessionCreated.SessionId}",
+           new { sessionId = newSessionCreated.SessionId, sessionToken = newSessionCreated.SessionToken });
             });
 
             // PUT (update) a session
