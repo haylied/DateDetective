@@ -42,6 +42,7 @@ export class SessionComponent implements OnInit{
         this.sessionForm.patchValue({
           sessionToken: sessionData.SessionToken
         });
+        //console.log(sessionData.sessionToken);
         console.log('Session created:', sessionData);
       }
     );}

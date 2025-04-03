@@ -181,47 +181,81 @@ namespace DDetective.Services
             }
         }
 
+        //public async Task<int> CreateSession(Session newSession)
+        //{
+        //    using (var db = Connection)
+        //    {
+        //        await db.OpenAsync();
+        //        // need to double check on sql syntax
+        //        //string sql = "INSERT INTO Session " +
+        //        //    "(" +
+        //        //    //"SessionId, " +
+        //        //    //"SessionName, " +
+        //        //    "SessionToken " +
+        //        //    //"ExpirationTime" +
+        //        //    ") " +
+        //        //    "VALUES " +
+        //        //    "(" +
+        //        //    //"@sessionId, " +
+        //        //   // "@sessionName, " +
+        //        //    "@sessionToken " +
+        //        //    //"@ExpirationTime" +
+        //        //    ") " +
+        //        //    "RETURNING SessionId";
+
+        //        string sql = "INSERT INTO Session (SessionId, SessionToken) " +
+        //     "VALUES (@sessionId, @sessionToken) " +
+        //     "RETURNING SessionId";
+
+
+        //        // may need to use QuerySingleAsync<int>() to return single Id
+        //        return await db.QuerySingleAsync<int>(sql, new { newSession.SessionToken });
+
+        //        //return await db.ExecuteAsync(sql, new
+        //        //{
+        //        //   // newSession.SessionId,
+        //        //    //newSession.SessionName,
+        //        //    newSession.SessionToken
+        //        //   // newSession.ExpirationTime
+
+        //        //    // SessionToken = newSession.SessionToken
+        //        //});
+        //    }
+        //}
+
+        //public async Task<int> CreateSession(Session newSession)
+        //{
+        //    using (var db = Connection)
+        //    {
+        //        await db.OpenAsync();
+        //        // Adjusted SQL to only insert the SessionToken and use proper quoting
+        //        string sql = "INSERT INTO \"Session\" (\"SessionToken\") " +
+        //                     "VALUES (@sessionToken) " +
+        //                     "RETURNING \"SessionId\"";
+
+        //        return await db.QuerySingleAsync<int>(sql, new { sessionToken = newSession.SessionToken });
+        //    }
+        //}
+
         public async Task<int> CreateSession(Session newSession)
         {
             using (var db = Connection)
             {
                 await db.OpenAsync();
-                // need to double check on sql syntax
-                //string sql = "INSERT INTO Session " +
-                //    "(" +
-                //    //"SessionId, " +
-                //    //"SessionName, " +
-                //    "SessionToken " +
-                //    //"ExpirationTime" +
-                //    ") " +
-                //    "VALUES " +
-                //    "(" +
-                //    //"@sessionId, " +
-                //   // "@sessionName, " +
-                //    "@sessionToken " +
-                //    //"@ExpirationTime" +
-                //    ") " +
-                //    "RETURNING SessionId";
+                //string sql = "INSERT INTO session (sessiontoken) " +
+                //             "VALUES (@sessionToken) " +
+                //             "RETURNING sessionid";
 
-                string sql = "INSERT INTO Session (SessionId, SessionToken) " +
-             "VALUES (@sessionId, @sessionToken) " +
-             "RETURNING SessionId";
+                string sql = "INSERT INTO session (sessiontoken) " +
+             "VALUES (@sessionToken) " +
+             "RETURNING sessionid";
 
 
-                // may need to use QuerySingleAsync<int>() to return single Id
-                return await db.QuerySingleAsync<int>(sql, new { newSession.SessionToken });
-
-                //return await db.ExecuteAsync(sql, new
-                //{
-                //   // newSession.SessionId,
-                //    //newSession.SessionName,
-                //    newSession.SessionToken
-                //   // newSession.ExpirationTime
-
-                //    // SessionToken = newSession.SessionToken
-                //});
+                return await db.QuerySingleAsync<int>(sql, new { sessionToken = newSession.SessionToken });
             }
         }
+
+
 
         public async Task<bool> UpdateSession(Session sessionToUpdate)
         {
