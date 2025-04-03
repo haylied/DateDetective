@@ -77,6 +77,13 @@ namespace DDetective.Services
                 return sessionById is not null ? Results.Ok(sessionById) : Results.NotFound();
             });
 
+            // GET session by sessiontoken
+            endpoints.MapGet("/session", async (string sessionToken, Domain domain) =>
+            {
+                var sessionByToken = await domain.GetSessionByToken(sessionToken);
+                return sessionByToken is not null ? Results.Ok(sessionByToken) : Results.NotFound();
+            });
+
             // POST (create) a session
             //endpoints.MapPost("/session", async (Domain domain) =>
             ////endpoints.MapPost("/session", async (Session newSession, Domain domain) =>
