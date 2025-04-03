@@ -1,4 +1,4 @@
-using DDetective.Data;
+//using DDetective.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DDetective.Areas.Identity.Data;
@@ -22,6 +22,7 @@ namespace DDetective
                     policy =>
                     {
                         policy.AllowAnyOrigin()
+                        //policy.WithOrigins("http://localhost:4200")
                               .AllowAnyHeader()
                               .AllowAnyMethod();
                     });
@@ -80,7 +81,7 @@ namespace DDetective
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.MapRazorPages();
+            //app.MapRazorPages();
 
             app.Run();
         }

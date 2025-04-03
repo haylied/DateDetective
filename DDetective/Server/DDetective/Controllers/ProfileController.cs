@@ -1,18 +1,18 @@
-using DDetective.Models;
-using Microsoft.AspNetCore.Mvc;
-using DDetective.ViewModels;
-using DDetective.Data;
-using Microsoft.EntityFrameworkCore;
+//using DDetective.Models;
+//using Microsoft.AspNetCore.Mvc;
+//using DDetective.ViewModels;
+//using DDetective.Data;
+//using Microsoft.EntityFrameworkCore;
 
-namespace DDetective.Controllers
-{
-    public class ProfileController : Controller
-    {
+//namespace DDetective.Controllers
+//{
+//    public class ProfileController : Controller
+//    {
 
-        //some code
+//        //some code
 
-        public ProfileController() { }
+//        public ProfileController() { }
 
-        //some code
-    }
-}
+//        //some code
+//    }
+//}

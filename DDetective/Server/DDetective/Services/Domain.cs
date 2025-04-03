@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Security.Policy;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 using Microsoft.Extensions.Configuration;
 using DDetective.Models;
 using DDetective.Services;
@@ -95,8 +96,13 @@ namespace DDetective.Services
             return await _repo.GetSessionById(sessionId);
         }
 
-        public async Task<int> CreateSession(Session newSession)
+        public async Task<int> CreateSession()
         {
+            Session newSession = new Session
+            {
+                SessionToken = GenerateSessionToken(),
+            };
+
             return await _repo.CreateSession(newSession);
         }
 
@@ -121,42 +127,63 @@ namespace DDetective.Services
             }
         }
 
+        public static string GenerateSessionToken(string charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
+        {
+            int length = 10;
+
+            // separates charSet into individual, unique characters... if duplicates exist, use .Distinct()
+            var charArray = charSet.ToArray();
+
+            // sets char array to length of 10
+            char[] token = new char[length];
+
+            // loop 10 times to grab random char from charArray, cryptographically generates random integer from 0 to charArray.Length, sets to token
+            for (int i = 0; i < length; i++)
+            {
+                token[i] = charArray[RandomNumberGenerator.GetInt32(charArray.Length)];
+            }
+
+            // new string created from this array, string is returned
+            return new string(token);
+        }
+
         // --------- Profiles Logic --------- //
-        public async Task<IEnumerable<Profile>> GetAllProfiles()
-        {
-            return await _repo.GetAllProfiles();
-        }
+        //public async Task<IEnumerable<Profile>> GetAllProfiles()
+        //{
+        //    return await _repo.GetAllProfiles();
+        //}
 
-        public async Task<Profile> GetProfileById(int profileId)
-        {
-            return await _repo.GetProfileById(profileId);
-        }
+        //public async Task<Profile> GetProfileById(int profileId)
+        //{
+        //    return await _repo.GetProfileById(profileId);
+        //}
 
-        public async Task<int> CreateProfile(Profile newProfile)
-        {
-            return await _repo.CreateProfile(newProfile);
-        }
+        //public async Task<int> CreateProfile(Profile newProfile)
+        //{
+        //    return await _repo.CreateProfile(newProfile);
+        //}
 
-        public async Task<bool> UpdateProfile(Profile profileToUpdate)
-        {
-            return await _repo.UpdateProfile(profileToUpdate);
-        }
+        //public async Task<bool> UpdateProfile(Profile profileToUpdate)
+        //{
+        //    return await _repo.UpdateProfile(profileToUpdate);
+        //}
 
-        public async Task<bool> DeleteProfile(int profileId)
-        {
-            var existingProfile = await _repo.GetProfileById(profileId);
+        //public async Task<bool> DeleteProfile(int profileId)
+        //{
+        //    var existingProfile = await _repo.GetProfileById(profileId);
 
-            if (existingProfile == null)
-            {
-                Console.WriteLine($"Profile {profileId} not found.");
-                return false;
+        //    if (existingProfile == null)
+        //    {
+        //        Console.WriteLine($"Profile {profileId} not found.");
+        //        return false;
 
-            }
-            else
-            {
-                Console.WriteLine($"Profile {profileId} deleted.");
-                return await _repo.DeleteProfile(profileId);
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine($"Profile {profileId} deleted.");
+        //        return await _repo.DeleteProfile(profileId);
+        //    }
+        //}
+
     }
 }

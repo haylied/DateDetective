@@ -28,19 +28,19 @@ export class EventFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  allDaySelected(): void{
-    this.eventForm = this.fb.group({
-      startDate:,
-      startTime:,
-      endDate:,
-      endTime:['', Validators.required]
-    });
-  }
+  // allDaySelected(): void{
+  //   this.eventForm = this.fb.group({
+  //     startDate:,
+  //     startTime:,
+  //     endDate:,
+  //     endTime:['', Validators.required]
+  //   });
+  // }
 
-  submitForm(): void {
-    if (this.eventForm.valid) {
-      console.log(this.eventForm.value);
+  // submitForm(): void {
+  //   if (this.eventForm.valid) {
+  //     console.log(this.eventForm.value);
 
-    }
-  }
+  //   }
+  // }
 }

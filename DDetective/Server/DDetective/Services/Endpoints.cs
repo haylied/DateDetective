@@ -64,7 +64,7 @@ namespace DDetective.Services
             // -------------------------
 
             // GET all sessions
-            endpoints.MapGet("/session", async (Domain domain) =>
+            endpoints.MapGet("/session/all", async (Domain domain) =>
             {
                 var sessions = await domain.GetAllSessions();
                 return Results.Ok(sessions);
@@ -78,11 +78,22 @@ namespace DDetective.Services
             });
 
             // POST (create) a session
-            endpoints.MapPost("/session", async (Session newSession, Domain domain) =>
+            //endpoints.MapPost("/session", async (Domain domain) =>
+            ////endpoints.MapPost("/session", async (Session newSession, Domain domain) =>
+            //{
+            //    // Validation Here?
+            //    int newSessionCreated = await domain.CreateSession();
+            //    //int newSessionCreated = await domain.CreateSession(newSession);
+            //   // return Results.Created($"/session/created", newSession);
+            //    return Results.Created($"/session/created");
+            //});
+
+            // POST (create) a session
+            endpoints.MapPost("/session", async (Domain domain) =>
             {
-                // Validation Here?
-                int newSessionCreated = await domain.CreateSession(newSession);
-                return Results.Created($"/session/created", newSession);
+                int newSessionCreated = await domain.CreateSession();
+                // Return a 201 Created response with the URI for the newly created session.
+                return Results.Created($"/session/{newSessionCreated}", new { sessionId = newSessionCreated });
             });
 
             // PUT (update) a session
@@ -106,42 +117,42 @@ namespace DDetective.Services
             // -------------------------
 
             // GET all profiles
-            endpoints.MapGet("/profile", async (Domain domain) =>
-            {
-                var profiles = await domain.GetAllProfiles();
-                return Results.Ok(profiles);
-            });
+            //endpoints.MapGet("/profile", async (Domain domain) =>
+            //{
+            //    var profiles = await domain.GetAllProfiles();
+            //    return Results.Ok(profiles);
+            //});
 
-            // GET profile by id
-            endpoints.MapGet("/profile/{id}", async (int id, Domain domain) =>
-            {
-                var profile = await domain.GetProfileById(id);
-                return profile is not null ? Results.Ok(profile) : Results.NotFound();
-            });
+            //// GET profile by id
+            //endpoints.MapGet("/profile/{id}", async (int id, Domain domain) =>
+            //{
+            //    var profile = await domain.GetProfileById(id);
+            //    return profile is not null ? Results.Ok(profile) : Results.NotFound();
+            //});
 
-            // POST (create) a profile
-            endpoints.MapPost("/profile", async (Profile newProfile, Domain domain) =>
-            {
-                // Validation Here?
-                int newProfileCreated = await domain.CreateProfile(newProfile);
-                return Results.Created($"/profile/created", newProfile);
-            });
+            //// POST (create) a profile
+            //endpoints.MapPost("/profile", async (Profile newProfile, Domain domain) =>
+            //{
+            //    // Validation Here?
+            //    int newProfileCreated = await domain.CreateProfile(newProfile);
+            //    return Results.Created($"/profile/created", newProfile);
+            //});
 
-            // PUT (update) a profile
-            endpoints.MapPut("/profile/{id}", async (int id, Profile profileToUpdate, Domain domain) =>
-            {
-                // Validation Here?
-                bool updated = await domain.UpdateProfile(profileToUpdate);
-                return updated ? Results.NoContent() : Results.NotFound();
-            });
+            //// PUT (update) a profile
+            //endpoints.MapPut("/profile/{id}", async (int id, Profile profileToUpdate, Domain domain) =>
+            //{
+            //    // Validation Here?
+            //    bool updated = await domain.UpdateProfile(profileToUpdate);
+            //    return updated ? Results.NoContent() : Results.NotFound();
+            //});
 
-            // DELETE a profile by ID
-            endpoints.MapDelete("/profile/delete", async (int id, Domain domain) =>
-            {
-                // Validation Here?
-                bool deleted = await domain.DeleteProfile(id);
-                return deleted ? Results.Ok() : Results.NotFound();
-            });
+            //// DELETE a profile by ID
+            //endpoints.MapDelete("/profile/delete", async (int id, Domain domain) =>
+            //{
+            //    // Validation Here?
+            //    bool deleted = await domain.DeleteProfile(id);
+            //    return deleted ? Results.Ok() : Results.NotFound();
+            //});
 
             return endpoints;
         }
