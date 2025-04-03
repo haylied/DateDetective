@@ -96,7 +96,7 @@ namespace DDetective.Services
             return await _repo.GetSessionById(sessionId);
         }
 
-        public async Task<int> CreateSession()
+        public async Task<Session> CreateSession()
         {
             Session newSession = new Session
             {

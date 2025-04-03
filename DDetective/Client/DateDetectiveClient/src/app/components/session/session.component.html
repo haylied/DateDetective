@@ -14,4 +14,8 @@
       <button >Submit</button>
       <button (click) = "onCreateSession()">Create New Session</button>
     </div>
+
+    <div *ngIf="sessionToken">
+      <p>Your new session token: <strong>{{ sessionToken }}</strong></p>
+    </div>
   </div>
