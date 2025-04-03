@@ -96,6 +96,11 @@ namespace DDetective.Services
             return await _repo.GetSessionById(sessionId);
         }
 
+        public async Task<Session> GetSessionByToken(string sessionToken)
+        {
+            return await _repo.GetSessionByToken(sessionToken);
+        }
+
         public async Task<Session> CreateSession()
         {
             Session newSession = new Session

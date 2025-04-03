@@ -181,6 +181,18 @@ namespace DDetective.Services
             }
         }
 
+        public async Task<Session> GetSessionByToken(string sessionToken)
+        {
+            using (var db = Connection)
+            {
+                await db.OpenAsync();
+                string sql = "SELECT sessionid, sessiontoken " +
+                    "FROM session " +
+                    "WHERE sessiontoken = @sessionToken";
+                return await db.QuerySingleOrDefaultAsync<Session>(sql, new { sessionToken });
+            }
+        }
+
         //public async Task<int> CreateSession(Session newSession)
         //{
         //    using (var db = Connection)
@@ -220,38 +232,6 @@ namespace DDetective.Services
 
         //        //    // SessionToken = newSession.SessionToken
         //        //});
-        //    }
-        //}
-
-        //public async Task<int> CreateSession(Session newSession)
-        //{
-        //    using (var db = Connection)
-        //    {
-        //        await db.OpenAsync();
-        //        // Adjusted SQL to only insert the SessionToken and use proper quoting
-        //        string sql = "INSERT INTO \"Session\" (\"SessionToken\") " +
-        //                     "VALUES (@sessionToken) " +
-        //                     "RETURNING \"SessionId\"";
-
-        //        return await db.QuerySingleAsync<int>(sql, new { sessionToken = newSession.SessionToken });
-        //    }
-        //}
-
-        //public async Task<int> CreateSession(Session newSession)
-        //{
-        //    using (var db = Connection)
-        //    {
-        //        await db.OpenAsync();
-        //        //string sql = "INSERT INTO session (sessiontoken) " +
-        //        //             "VALUES (@sessionToken) " +
-        //        //             "RETURNING sessionid";
-
-        //        string sql = "INSERT INTO session (sessiontoken) " +
-        //     "VALUES (@sessionToken) " +
-        //     "RETURNING sessionid";
-
-
-        //        return await db.QuerySingleAsync<int>(sql, new { sessionToken = newSession.SessionToken });
         //    }
         //}
 

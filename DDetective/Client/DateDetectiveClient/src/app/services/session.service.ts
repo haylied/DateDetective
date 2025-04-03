@@ -22,4 +22,9 @@ import { Observable } from 'rxjs';
 
       //return this.http.post(`${this.apiUrl}/session`, {});
     }
+
+    getSessionByToken(token: string): Observable<any> {
+      return this.http.get<any>(`${this.apiUrl}/session?sessionToken=${encodeURIComponent(token)}`);
+    }
+
   }
