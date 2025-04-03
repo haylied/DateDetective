@@ -20,8 +20,10 @@ namespace DDetective.Services
             _connectionString = configuration.GetConnectionString("PostgresConnection");
         }
 
+        public NpgsqlConnection Connection => new NpgsqlConnection(_connectionString);
+
         // New NpgsqlConnection instance need each time it is used???
-        public IDbConnection Connection => new NpgsqlConnection(_connectionString);
+        // public IDbConnection Connection => new NpgsqlConnection(_connectionString);
 
         /// Create Helper Method for all connections, similar to this??... 
         //public async Task<IDbConnection> OpenAsyncConnection()
@@ -39,7 +41,7 @@ namespace DDetective.Services
         {
             using (var db = Connection)
             {
-                await db.Open();
+                await db.OpenAsync();
                 string sql = "SELECT * FROM Event";
                 return await db.QueryAsync<Event>(sql);
 
@@ -56,10 +58,13 @@ namespace DDetective.Services
         {
             using (var db = Connection)
             {
-                await db.Open();
+                await db.OpenAsync();
                 string sql = "SELECT * FROM Event " +
                     "WHERE EventId = @eventId";
-                return await db.QueryAsync<Event>(sql, new { eventId = eventId });
+                // this returns an IEnumerable<Event> instead of <Event> ... assuming multiple events will be recalled
+                //return await db.QueryAsync<Event>(sql, new { eventId = eventId });
+
+                return await db.QueryFirstOrDefaultAsync<Event>(sql, new { eventId });
             }
         }
 
@@ -68,7 +73,7 @@ namespace DDetective.Services
         {
             using (var db = Connection)
             {
-                await db.Open();
+                await db.OpenAsync();
                 string sql = "INSERT INTO Event " +
                     "(EventId, " +
                     "EventName, " +
@@ -110,7 +115,7 @@ namespace DDetective.Services
         {
             using (var db = Connection)
             {
-                await db.Open();
+                await db.OpenAsync();
                 string sql = "UPDATE Event " +
                     "SET EventId = @EventId, " +
                     "EventName = @EventName, " +
@@ -141,7 +146,7 @@ namespace DDetective.Services
         {
             using (var db = Connection)
             {
-                await db.Open();
+                await db.OpenAsync();
                 string sql = " DELETE FROM Event " +
                     "WHERE EventId = @EventId";
                 int result = await db.ExecuteAsync(sql, new { EventId = eventId });
@@ -156,7 +161,7 @@ namespace DDetective.Services
         {
             using (var db = Connection)
             {
-                await db.Open();
+                await db.OpenAsync();
                 string sql = "SELECT * FROM Session";
                 return await db.QueryAsync<Session>(sql);
 
@@ -168,9 +173,11 @@ namespace DDetective.Services
         {
             using (var db = Connection)
             {
-                await db.Open();
+                await db.OpenAsync();
                 string sql = "SELECT * FROM Session WHERE SessionId = @sessionId";
-                return await db.QueryAsync<Session>(sql, new { SessionId = sessionId });
+               // return await db.QueryAsync<Session>(sql, new { SessionId = sessionId });
+
+                return await db.QueryFirstOrDefaultAsync<Session>(sql, new { sessionId });
             }
         }
 
@@ -178,23 +185,29 @@ namespace DDetective.Services
         {
             using (var db = Connection)
             {
-                await db.Open();
+                await db.OpenAsync();
                 // need to double check on sql syntax
-                string sql = "INSERT INTO Session " +
-                    "(" +
-                    //"SessionId, " +
-                    //"SessionName, " +
-                    "SessionToken " +
-                    //"ExpirationTime" +
-                    ") " +
-                    "VALUES " +
-                    "(" +
-                    //"@sessionId, " +
-                   // "@sessionName, " +
-                    "@sessionToken " +
-                    //"@ExpirationTime" +
-                    ") " +
-                    "RETURNING SessionId";
+                //string sql = "INSERT INTO Session " +
+                //    "(" +
+                //    //"SessionId, " +
+                //    //"SessionName, " +
+                //    "SessionToken " +
+                //    //"ExpirationTime" +
+                //    ") " +
+                //    "VALUES " +
+                //    "(" +
+                //    //"@sessionId, " +
+                //   // "@sessionName, " +
+                //    "@sessionToken " +
+                //    //"@ExpirationTime" +
+                //    ") " +
+                //    "RETURNING SessionId";
+
+                string sql = "INSERT INTO Session (SessionId, SessionToken) " +
+             "VALUES (@sessionId, @sessionToken) " +
+             "RETURNING SessionId";
+
+
                 // may need to use QuerySingleAsync<int>() to return single Id
                 return await db.QuerySingleAsync<int>(sql, new { newSession.SessionToken });
 
@@ -214,7 +227,7 @@ namespace DDetective.Services
         {
             using (var db = Connection)
             {
-                await db.Open();
+                await db.OpenAsync();
                 string sql = "UPDATE Session " +
                     "SET SessionId = @SessionId, " +
                    // "SessionName = @SessionName, " +
@@ -236,7 +249,7 @@ namespace DDetective.Services
         {
             using (var db = Connection)
             {
-                await db.Open();
+                await db.OpenAsync();
                 string sql = "DELETE FROM Session " +
                     "WHERE SessionId = @SessionId";
                 int result = await db.ExecuteAsync(sql, new { SessionId = sessionId });
@@ -247,83 +260,83 @@ namespace DDetective.Services
 
         // ----- PROFILE METHODS ----- //
 
-        public async Task<IEnumerable<Profile>> GetAllProfiles()
-        {
-            using (var db = Connection)
-            {
-                await db.Open();
-                string sql = "SELECT * FROM Profile";
-                return await db.QueryAsync<Profile>(sql);
+        //public async Task<IEnumerable<Profile>> GetAllProfiles()
+        //{
+        //    using (var db = Connection)
+        //    {
+        //        await db.OpenAsync();
+        //        string sql = "SELECT * FROM Profile";
+        //        return await db.QueryAsync<Profile>(sql);
 
-                // may need to do same thing as the Event Method
-            }
-        }
+        //        // may need to do same thing as the Event Method
+        //    }
+        //}
 
-        public async Task<Profile> GetProfileById(int profileId)
-        {
-            using (var db = Connection)
-            {
-                await db.Open();
-                string sql = "SELECT * FROM Profile " +
-                    "WHERE ProfileId = @profileId";
-                return await db.QueryAsync<Profile>(sql, new { ProfileId = profileId });
-            }
-        }
+        //public async Task<Profile> GetProfileById(int profileId)
+        //{
+        //    using (var db = Connection)
+        //    {
+        //        await db.OpenAsync();
+        //        string sql = "SELECT * FROM Profile " +
+        //            "WHERE ProfileId = @profileId";
+        //        return await db.QueryAsync<Profile>(sql, new { ProfileId = profileId });
+        //    }
+        //}
 
-        public async Task<int> CreateProfile(Profile newProfile)
-        {
-            using (var db = Connection)
-            {
-                await db.Open();
-                string sql = "INSERT INTO Profile " +
-                        "(ProfileId, " +
-                        "ProfileName, " +
-                        "SessionId) " +
-                        "VALUES " +
-                        "(@profileId, " +
-                        "@profileName, " +
-                        "@sessionId) " +
-                        "RETURNING ProfileId";
-                return await db.ExecuteAsync(sql, new
-                {
-                    newProfile.ProfileId,
-                    newProfile.ProfileName,
-                    newProfile.SessionId
-                });
-            }
-        }
+        //public async Task<int> CreateProfile(Profile newProfile)
+        //{
+        //    using (var db = Connection)
+        //    {
+        //        await db.OpenAsync();
+        //        string sql = "INSERT INTO Profile " +
+        //                "(ProfileId, " +
+        //                "ProfileName, " +
+        //                "SessionId) " +
+        //                "VALUES " +
+        //                "(@profileId, " +
+        //                "@profileName, " +
+        //                "@sessionId) " +
+        //                "RETURNING ProfileId";
+        //        return await db.ExecuteAsync(sql, new
+        //        {
+        //            newProfile.ProfileId,
+        //            newProfile.ProfileName,
+        //            newProfile.SessionId
+        //        });
+        //    }
+        //}
 
-        public async Task<bool> UpdateProfile(Profile profileToUpdate)
-        {
-            using (var db = Connection)
-            {
-                await db.Open();
-                string sql = "UPDATE Profile " +
-                        "SET ProfileId = @ProfileId, " +
-                        "ProfileName = @ProfileName, " +
-                        "SessionId = @SessionId " +
-                        "WHERE ProfileId = @ProfileId";
-                int result = await db.ExecuteAsync(sql, new
-                {
-                    profileToUpdate.ProfileId,
-                    profileToUpdate.ProfileName,
-                    profileToUpdate.SessionId
-                });
-                return result > 0;
-            }
-        }
+        //public async Task<bool> UpdateProfile(Profile profileToUpdate)
+        //{
+        //    using (var db = Connection)
+        //    {
+        //        await db.OpenAsync();
+        //        string sql = "UPDATE Profile " +
+        //                "SET ProfileId = @ProfileId, " +
+        //                "ProfileName = @ProfileName, " +
+        //                "SessionId = @SessionId " +
+        //                "WHERE ProfileId = @ProfileId";
+        //        int result = await db.ExecuteAsync(sql, new
+        //        {
+        //            profileToUpdate.ProfileId,
+        //            profileToUpdate.ProfileName,
+        //            profileToUpdate.SessionId
+        //        });
+        //        return result > 0;
+        //    }
+        //}
 
-        public async Task<bool> DeleteProfile(int profileId)
-        {
-            using (var db = Connection)
-            {
-                await db.Open();
-                string sql = " DELETE FROM Profile " +
-                        "WHERE ProfileId = @ProfileId";
-                int result = await db.ExecuteAsync(sql, new { ProfileId = profileId });
-                return result > 0;
-            }
-        }
+        //public async Task<bool> DeleteProfile(int profileId)
+        //{
+        //    using (var db = Connection)
+        //    {
+        //        await db.OpenAsync();
+        //        string sql = " DELETE FROM Profile " +
+        //                "WHERE ProfileId = @ProfileId";
+        //        int result = await db.ExecuteAsync(sql, new { ProfileId = profileId });
+        //        return result > 0;
+        //    }
+        //}
 
     }
 }

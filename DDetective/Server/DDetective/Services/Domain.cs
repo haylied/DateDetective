@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Security.Policy;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 using Microsoft.Extensions.Configuration;
 using DDetective.Models;
 using DDetective.Services;
@@ -147,42 +148,42 @@ namespace DDetective.Services
         }
 
         // --------- Profiles Logic --------- //
-        public async Task<IEnumerable<Profile>> GetAllProfiles()
-        {
-            return await _repo.GetAllProfiles();
-        }
+        //public async Task<IEnumerable<Profile>> GetAllProfiles()
+        //{
+        //    return await _repo.GetAllProfiles();
+        //}
 
-        public async Task<Profile> GetProfileById(int profileId)
-        {
-            return await _repo.GetProfileById(profileId);
-        }
+        //public async Task<Profile> GetProfileById(int profileId)
+        //{
+        //    return await _repo.GetProfileById(profileId);
+        //}
 
-        public async Task<int> CreateProfile(Profile newProfile)
-        {
-            return await _repo.CreateProfile(newProfile);
-        }
+        //public async Task<int> CreateProfile(Profile newProfile)
+        //{
+        //    return await _repo.CreateProfile(newProfile);
+        //}
 
-        public async Task<bool> UpdateProfile(Profile profileToUpdate)
-        {
-            return await _repo.UpdateProfile(profileToUpdate);
-        }
+        //public async Task<bool> UpdateProfile(Profile profileToUpdate)
+        //{
+        //    return await _repo.UpdateProfile(profileToUpdate);
+        //}
 
-        public async Task<bool> DeleteProfile(int profileId)
-        {
-            var existingProfile = await _repo.GetProfileById(profileId);
+        //public async Task<bool> DeleteProfile(int profileId)
+        //{
+        //    var existingProfile = await _repo.GetProfileById(profileId);
 
-            if (existingProfile == null)
-            {
-                Console.WriteLine($"Profile {profileId} not found.");
-                return false;
+        //    if (existingProfile == null)
+        //    {
+        //        Console.WriteLine($"Profile {profileId} not found.");
+        //        return false;
 
-            }
-            else
-            {
-                Console.WriteLine($"Profile {profileId} deleted.");
-                return await _repo.DeleteProfile(profileId);
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine($"Profile {profileId} deleted.");
+        //        return await _repo.DeleteProfile(profileId);
+        //    }
+        //}
 
     }
 }

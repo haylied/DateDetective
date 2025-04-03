@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel;
-using Systm.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace DDetctive.Models
 {

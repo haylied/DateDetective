@@ -1,208 +1,208 @@
-﻿using DDetective.Models;
-using Microsoft.AspNetCore.Mvc;
-using DDetective.ViewModels;
-using DDetective.Data;
-using Microsoft.EntityFrameworkCore;
+﻿//using DDetective.Models;
+//using Microsoft.AspNetCore.Mvc;
+//using DDetective.ViewModels;
+//using DDetective.Data;
+//using Microsoft.EntityFrameworkCore;
 
-namespace DDetective.Controllers
- {
-    [ApiController]
-    [Route("[controller]")]
-    public class AddEventController : Controller
-    {
+//namespace DDetective.Controllers
+// {
+//    [ApiController]
+//    [Route("[controller]")]
+//    public class AddEventController : Controller
+//    {
 
-        private EventDbContext eventContext;
-
-
-        public AddEventController(EventDbContext dbContext)
-        {
-            eventContext = dbContext;
-        }
-
-        [HttpGet]
-        [Route("/Index")]
-        public IActionResult Index()
-        {
-            List<AddEventModel> events = eventContext.Events?.ToList();
-            return View(events);
-        }
+//        private EventDbContext eventContext;
 
 
-        // GET FORM FIELDS TO CREATE AN EVENT
+//        public AddEventController(EventDbContext dbContext)
+//        {
+//            eventContext = dbContext;
+//        }
 
-        [HttpGet]
-        [Route("/CreateEvent")]
-        public IActionResult CreateEvent()
-        {
-            // Use ViewModel Fields & Validation for Form to Create an Event
-            AddEventViewModel addEventViewModel = new AddEventViewModel();
-            return View(addEventViewModel);
-        }
+//        [HttpGet]
+//        [Route("/Index")]
+//        public IActionResult Index()
+//        {
+//            List<AddEventModel> events = eventContext.Events?.ToList();
+//            return View(events);
+//        }
 
 
-        // SUBMIT FORM FIELDS TO CREATE AN EVENT
+//        // GET FORM FIELDS TO CREATE AN EVENT
 
-        [HttpPost]
-        [Route("/CreateEvent")]
-        public async Task<IActionResult> CreateEvent(AddEventViewModel addEventViewModel)
-        {
+//        [HttpGet]
+//        [Route("/CreateEvent")]
+//        public IActionResult CreateEvent()
+//        {
+//            // Use ViewModel Fields & Validation for Form to Create an Event
+//            AddEventViewModel addEventViewModel = new AddEventViewModel();
+//            return View(addEventViewModel);
+//        }
 
-            // If the Submission has VALID Data, Add to Database, Redirect to Form to Create Another Event
-            if (ModelState.IsValid)
-            {
+
+//        // SUBMIT FORM FIELDS TO CREATE AN EVENT
+
+//        [HttpPost]
+//        [Route("/CreateEvent")]
+//        public async Task<IActionResult> CreateEvent(AddEventViewModel addEventViewModel)
+//        {
+
+//            // If the Submission has VALID Data, Add to Database, Redirect to Form to Create Another Event
+//            if (ModelState.IsValid)
+//            {
               
-                AddEventModel addEventModel = new AddEventModel
-                {
-                    EventId = addEventViewModel.EventId,
-                    EventName = addEventViewModel.EventName,
-                    EventDescription = addEventViewModel.EventDescription,
-                    AllDayEvent = addEventViewModel.AllDayEvent,
-                    StartDate = addEventViewModel.StartDate,
-                    StartTime = addEventViewModel.StartTime,
-                    EndDate = addEventViewModel.EndDate,
-                    EndTime = addEventViewModel.EndTime
-                };
+//                AddEventModel addEventModel = new AddEventModel
+//                {
+//                    EventId = addEventViewModel.EventId,
+//                    EventName = addEventViewModel.EventName,
+//                    EventDescription = addEventViewModel.EventDescription,
+//                    AllDayEvent = addEventViewModel.AllDayEvent,
+//                    StartDate = addEventViewModel.StartDate,
+//                    StartTime = addEventViewModel.StartTime,
+//                    EndDate = addEventViewModel.EndDate,
+//                    EndTime = addEventViewModel.EndTime
+//                };
                 
 
-                // If it's an all-day event, override times to cover the full day
-                if (addEventViewModel.AllDayEvent)
-                {
-                    addEventModel.StartTime = addEventViewModel.StartTime.Date; // Sets to 00:00:00, I hope
-                    addEventModel.EndTime = addEventViewModel.EndTime.Date.AddHours(23).AddMinutes(59).AddSeconds(59); // Sets to 23:59:59
-                }
+//                // If it's an all-day event, override times to cover the full day
+//                if (addEventViewModel.AllDayEvent)
+//                {
+//                    addEventModel.StartTime = addEventViewModel.StartTime.Date; // Sets to 00:00:00, I hope
+//                    addEventModel.EndTime = addEventViewModel.EndTime.Date.AddHours(23).AddMinutes(59).AddSeconds(59); // Sets to 23:59:59
+//                }
 
 
-                await eventContext.Events.AddAsync(addEventModel);
-                await eventContext.SaveChangesAsync();
+//                await eventContext.Events.AddAsync(addEventModel);
+//                await eventContext.SaveChangesAsync();
 
-                return Redirect("CreateEvent");
-            }
+//                return Redirect("CreateEvent");
+//            }
 
-            return View();
-        }
-
-
-        // VIEW EVENTS
-
-        [HttpGet]
-        [Route("/Read")]
-        public async Task<IActionResult> Read()
-        {
-            // Grab a List of Events from the Database
-            var events = await eventContext.Events.ToListAsync();
-
-            // Return a Json executable to be Read by Client
-            return Json(events);
-        }
+//            return View();
+//        }
 
 
-        // EDIT EXISTING EVENTS
+//        // VIEW EVENTS
 
-        [HttpPut]
-        [Route("/AddEventModel/Edit/{id}")]
-        public async Task<IActionResult> EditEvent(int id, AddEventViewModel addEventViewModel)
-        {
- /*
-            // Existing Event Data
-            var existingEvent = await eventContext.Events.FirstOrDefaultAsync(x => x.EventId == id);
+//        [HttpGet]
+//        [Route("/Read")]
+//        public async Task<IActionResult> Read()
+//        {
+//            // Grab a List of Events from the Database
+//            var events = await eventContext.Events.ToListAsync();
 
-            if (existingEvent == null)
-            {
-                return NotFound();
-            }
-
-            // Grabbing New Event Data to Implement into Existing Event
-            var editedEventData = new AddEventModel
-            {
-                EventId = id,
-                EventName = addEventViewModel.EventName,
-                EventDescription = addEventViewModel.EventDescription,
-                AllDayEvent = addEventViewModel.AllDayEvent,
-                StartDate = addEventViewModel.StartDate,
-                StartTime = addEventViewModel.StartTime,
-                EndDate = addEventViewModel.EndDate,
-                EndTime = addEventViewModel.EndTime
-            };
-
-            // If Existing Event is in the Database, Replace Old Event Data with New Event Data
-            if (existingEvent != null)
-            {
-                existingEvent.EventId = editedEventData.EventId;
-                existingEvent.EventName = editedEventData.EventName;
-                existingEvent.EventDescription = editedEventData.EventDescription;
-                existingEvent.AllDayEvent = editedEventData.AllDayEvent,
-                existingEvent.StartDate = editedEventData.StartDate,
-                existingEvent.StartTime = editedEventData.StartTime,
-                existingEvent.EndDate = editedEventData.EndDate,
-                existingEvent.EndTime = editedEventData.EndTime
-
-                if (editedEventData.AllDayEvent)
-                {
-                    existingEvent.StartTime = editedEventData.StartTime.Date, // Sets to 00:00:00, I hope
-                    existingEvent.EndTime = editedEventData.EndTime.Date.AddHours(23).AddMinutes(59).AddSeconds(59) // Sets to 23:59:59
-                }
-            } 
+//            // Return a Json executable to be Read by Client
+//            return Json(events);
+//        }
 
 
+//        // EDIT EXISTING EVENTS
 
-            // Save Changes
-            await eventContext.SaveChangesAsync();
+//        [HttpPut]
+//        [Route("/AddEventModel/Edit/{id}")]
+//        public async Task<IActionResult> EditEvent(int id, AddEventViewModel addEventViewModel)
+//        {
+// /*
+//            // Existing Event Data
+//            var existingEvent = await eventContext.Events.FirstOrDefaultAsync(x => x.EventId == id);
 
-            // On Successful Edit, Execute 'No Content' Response
-            return NoContent(); */
+//            if (existingEvent == null)
+//            {
+//                return NotFound();
+//            }
 
-            // REFACTORED CODE : NOT SURE IF WORKS 
+//            // Grabbing New Event Data to Implement into Existing Event
+//            var editedEventData = new AddEventModel
+//            {
+//                EventId = id,
+//                EventName = addEventViewModel.EventName,
+//                EventDescription = addEventViewModel.EventDescription,
+//                AllDayEvent = addEventViewModel.AllDayEvent,
+//                StartDate = addEventViewModel.StartDate,
+//                StartTime = addEventViewModel.StartTime,
+//                EndDate = addEventViewModel.EndDate,
+//                EndTime = addEventViewModel.EndTime
+//            };
 
-                var existingEvent = await eventContext.Events.FirstOrDefaultAsync(x => x.EventId == id);
+//            // If Existing Event is in the Database, Replace Old Event Data with New Event Data
+//            if (existingEvent != null)
+//            {
+//                existingEvent.EventId = editedEventData.EventId;
+//                existingEvent.EventName = editedEventData.EventName;
+//                existingEvent.EventDescription = editedEventData.EventDescription;
+//                existingEvent.AllDayEvent = editedEventData.AllDayEvent,
+//                existingEvent.StartDate = editedEventData.StartDate,
+//                existingEvent.StartTime = editedEventData.StartTime,
+//                existingEvent.EndDate = editedEventData.EndDate,
+//                existingEvent.EndTime = editedEventData.EndTime
 
-                if (existingEvent == null)
-                {
-                    return NotFound();
-                }
-
-                existingEvent.EventName = addEventViewModel.EventName;
-                existingEvent.EventDescription = addEventViewModel.EventDescription;
-                existingEvent.AllDayEvent = addEventViewModel.AllDayEvent;
-                existingEvent.StartDate = addEventViewModel.StartDate;
-                existingEvent.EndDate = addEventViewModel.EndDate;
-
-                if (addEventViewModel.AllDayEvent)
-                {
-                    existingEvent.StartTime = addEventViewModel.StartDate.Date; // Set to 00:00:00
-                    existingEvent.EndTime = addEventViewModel.EndDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59); // Set to 23:59:59
-                }
-                else
-                {
-                    existingEvent.StartTime = addEventViewModel.StartTime;
-                    existingEvent.EndTime = addEventViewModel.EndTime;
-                }
-
-                await eventContext.SaveChangesAsync();
-
-                return NoContent(); 
-        }
+//                if (editedEventData.AllDayEvent)
+//                {
+//                    existingEvent.StartTime = editedEventData.StartTime.Date, // Sets to 00:00:00, I hope
+//                    existingEvent.EndTime = editedEventData.EndTime.Date.AddHours(23).AddMinutes(59).AddSeconds(59) // Sets to 23:59:59
+//                }
+//            } 
 
 
-        // DELETE EXISTING EVENT
 
-        [HttpDelete]
-        [Route("/Delete/{id}")]
-        public async Task<IActionResult> DeleteEvent(int id)
-        {
-            // Grab the first or Default Event by its unique ID
-            var anEvent = await eventContext.Events.FirstOrDefaultAsync(x => x.EventId == id);
+//            // Save Changes
+//            await eventContext.SaveChangesAsync();
 
-            // If Event Not Present, Return Not Found 404
-            if (anEvent == null)
-            {
-                return NotFound();
-            }
+//            // On Successful Edit, Execute 'No Content' Response
+//            return NoContent(); */
 
-            // If Event Present, Delete Event and Save Changes, Return No Content 
-            eventContext.Remove(anEvent);
-            await eventContext.SaveChangesAsync();
+//            // REFACTORED CODE : NOT SURE IF WORKS 
 
-            return NoContent();
-        }
-    }
-}
+//                var existingEvent = await eventContext.Events.FirstOrDefaultAsync(x => x.EventId == id);
+
+//                if (existingEvent == null)
+//                {
+//                    return NotFound();
+//                }
+
+//                existingEvent.EventName = addEventViewModel.EventName;
+//                existingEvent.EventDescription = addEventViewModel.EventDescription;
+//                existingEvent.AllDayEvent = addEventViewModel.AllDayEvent;
+//                existingEvent.StartDate = addEventViewModel.StartDate;
+//                existingEvent.EndDate = addEventViewModel.EndDate;
+
+//                if (addEventViewModel.AllDayEvent)
+//                {
+//                    existingEvent.StartTime = addEventViewModel.StartDate.Date; // Set to 00:00:00
+//                    existingEvent.EndTime = addEventViewModel.EndDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59); // Set to 23:59:59
+//                }
+//                else
+//                {
+//                    existingEvent.StartTime = addEventViewModel.StartTime;
+//                    existingEvent.EndTime = addEventViewModel.EndTime;
+//                }
+
+//                await eventContext.SaveChangesAsync();
+
+//                return NoContent(); 
+//        }
+
+
+//        // DELETE EXISTING EVENT
+
+//        [HttpDelete]
+//        [Route("/Delete/{id}")]
+//        public async Task<IActionResult> DeleteEvent(int id)
+//        {
+//            // Grab the first or Default Event by its unique ID
+//            var anEvent = await eventContext.Events.FirstOrDefaultAsync(x => x.EventId == id);
+
+//            // If Event Not Present, Return Not Found 404
+//            if (anEvent == null)
+//            {
+//                return NotFound();
+//            }
+
+//            // If Event Present, Delete Event and Save Changes, Return No Content 
+//            eventContext.Remove(anEvent);
+//            await eventContext.SaveChangesAsync();
+
+//            return NoContent();
+//        }
+//    }
+//}

@@ -1,16 +1,16 @@
-using Microsoft.EntityFrameworkCore;
-using DDetective.Models;
+//using Microsoft.EntityFrameworkCore;
+//using DDetective.Models;
 
-namespace DDetective.Data
-{
+//namespace DDetective.Data
+//{
 
-	public class EventDbContext : DbContext
-	{
-		public EventDbContext(DbContextOptions<EventDbContext> options)
-			: base(options)
-		{
-		}
+//	public class EventDbContext : DbContext
+//	{
+//		public EventDbContext(DbContextOptions<EventDbContext> options)
+//			: base(options)
+//		{
+//		}
 
-		public DbSet<AddEventModel> Events { get; set; }
-	}
-}
+//		public DbSet<AddEventModel> Events { get; set; }
+//	}
+//}
