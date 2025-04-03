@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { SessionService } from '../../services/session.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-session',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './session.component.html',
-  styleUrl: './session.component.scss'
+  styleUrls: ['./session.component.scss']
 })
 export class SessionComponent implements OnInit{
   sessionForm!: FormGroup;
@@ -29,36 +29,29 @@ export class SessionComponent implements OnInit{
   ngOnInit(): void {}
 
   submitSessionToken(): void {
-    if(this.sessionForm.valid)
-    {
-      //take to events
-      console.log(this.sessionForm.value);
+    if (this.sessionForm.valid) {
+      const token: string = this.sessionForm.get('sessionToken')?.value;
+      console.log('Fetching session for token:', token);
+
+      this.sessionService.getSessionByToken(token).subscribe(
+        (sessionData: any) => {
+          console.log('Session fetched:', sessionData);
+          alert(`Session details: ${JSON.stringify(sessionData)}`);
+        }
+      );
     }
   }
-    // onCreateSession(): void {
-    //   this.sessionService.createSession().subscribe(
-    //     (sessionData: any) => {
-    //       // Use camelCase property names
-    //       this.sessionForm.patchValue({
-    //         sessionToken: sessionData.sessionToken
-    //       });
-    //       console.log('Session created:', sessionData);
-    //       alert(`Your session token is: ${sessionData.sessionToken}`);
-    //     }
-    //   );
-    // }
 
     onCreateSession(): void {
       this.sessionService.createSession().subscribe(
         (sessionData: any) => {
           // Log the raw sessionToken value to inspect its structure
           console.log('Session created:', sessionData);
-          console.log('Raw sessionToken:', sessionData.sessionToken);
+          console.log('SessionToken:', sessionData.sessionToken);
           
           // JSON.stringify to see structure
-          //alert(`Raw session token: ${JSON.stringify(sessionData.sessionToken)}`);
+          //alert(`Session token: ${JSON.stringify(sessionData.sessionToken)}`);
     
-          // Assuming after inspection you determine the actual token string is in a property, for example, "token":
           const tokenString = sessionData.sessionToken;
           
           // Update the form control and display the token
@@ -80,4 +73,4 @@ export class SessionComponent implements OnInit{
     // grab session token from database and display on page (latest created session)
   }
 */
-  }
+}

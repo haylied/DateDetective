@@ -1,4 +1,4 @@
-<div class="session-container">
+<!-- <div class="session-container">
     <h2>Session Manager</h2>
   
     <div class="form-group">
@@ -8,14 +8,32 @@
         type="text"
         placeholder="Enter session token"
       />
-    </div>
-  
-    <div class="button-group">
-      <button >Submit</button>
+      <div class="button-group">
+      <button type="button" (click)="submitSessionToken()">Submit Session Token</button>
       <button (click) = "onCreateSession()">Create New Session</button>
+      </div>
     </div>
+  </div> -->
 <!-- 
     <div *ngIf="sessionToken">
       <p>Your new session token: <strong>{{ sessionToken }}</strong></p>
     </div> -->
-  </div>
+
+    <form [formGroup]="sessionForm" class="session-container">
+      <h2>Session Manager</h2>
+      
+      <div class="form-group">
+        <label for="token">Session Token</label>
+        <input
+          id="token"
+          type="text"
+          placeholder="Enter session token"
+          formControlName="sessionToken"
+        />
+      </div>
+      
+      <div class="button-group">
+        <button type="button" (click)="submitSessionToken()">Submit Session Token</button>
+        <button type="button" (click)="onCreateSession()">Create New Session</button>
+      </div>
+    </form>
