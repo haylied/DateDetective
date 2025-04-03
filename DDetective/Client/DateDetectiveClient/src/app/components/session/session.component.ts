@@ -35,37 +35,37 @@ export class SessionComponent implements OnInit{
       console.log(this.sessionForm.value);
     }
   }
-
-  // onCreateSession(): void {
-  //   // Use subscribe to handle the observable returned by createSession().
-  //   this.sessionService.createSession().subscribe(
-  //     (sessionData: any) => {
-
-  //       // Assume the backend returns an object with a sessionToken property
-  //       // this.sessionToken = sessionData.sessionToken;
-
-
-  //       //alert(`Your session token is: ${sessionData.SessionToken}`);
-  //       // Expecting the backend to return an object with SessionToken
-  //       this.sessionForm.patchValue({
-  //         sessionToken: sessionData.SessionToken
-  //       });
-  //       //console.log(sessionData.sessionToken);
-        
-  //       console.log('Session created:', sessionData);
-  //       alert(`Your session token is: ${sessionData.SessionToken}`);
-  //     }
-  //   );}
+    // onCreateSession(): void {
+    //   this.sessionService.createSession().subscribe(
+    //     (sessionData: any) => {
+    //       // Use camelCase property names
+    //       this.sessionForm.patchValue({
+    //         sessionToken: sessionData.sessionToken
+    //       });
+    //       console.log('Session created:', sessionData);
+    //       alert(`Your session token is: ${sessionData.sessionToken}`);
+    //     }
+    //   );
+    // }
 
     onCreateSession(): void {
       this.sessionService.createSession().subscribe(
         (sessionData: any) => {
-          // Use camelCase property names as returned by the API
-          this.sessionForm.patchValue({
-            sessionToken: sessionData.sessionToken
-          });
+          // Log the raw sessionToken value to inspect its structure
           console.log('Session created:', sessionData);
-          alert(`Your session token is: ${sessionData.sessionToken}`);
+          console.log('Raw sessionToken:', sessionData.sessionToken);
+          
+          // JSON.stringify to see structure
+          //alert(`Raw session token: ${JSON.stringify(sessionData.sessionToken)}`);
+    
+          // Assuming after inspection you determine the actual token string is in a property, for example, "token":
+          const tokenString = sessionData.sessionToken;
+          
+          // Update the form control and display the token
+          this.sessionForm.patchValue({
+            sessionToken: tokenString
+          });
+          alert(`Your session token is: ${tokenString}`);
         }
       );
     }
