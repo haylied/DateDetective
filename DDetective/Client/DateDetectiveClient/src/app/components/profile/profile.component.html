@@ -1,0 +1,13 @@
+<form [formGroup] = "profileForm"> 
+    <h2>Create Profile</h2>
+    <div class="form-group">
+        <label >Name:</label>
+        <input
+          id="name"
+          type="text"
+          placeholder="Enter name here"
+          formControlName="profileName"
+        />
+      </div>
+      <button type="button">Create!</button>
+</form>

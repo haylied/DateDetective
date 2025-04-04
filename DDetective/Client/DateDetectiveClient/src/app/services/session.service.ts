@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 
   export class SessionService {
 
-    // Replace with your backend API URL
+    // backend API URL
     private apiUrl = 'http://localhost:5000';
   
     constructor(private http: HttpClient) { }

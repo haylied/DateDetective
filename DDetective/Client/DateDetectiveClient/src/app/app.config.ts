@@ -12,7 +12,8 @@ export const appConfig: ApplicationConfig = {
 };
 
 export const AppConfig = {
-  apiUrl: 'http://localhost:16725', //server URL
+  //apiUrl: 'http://localhost:16725', //server URL
+  apiUrl: 'http://localhost:5000', //server URL
   appName: 'Event Manager',
   version: '1.0.0',
 };
