@@ -14,4 +14,8 @@ import { Observable } from 'rxjs';
   
     constructor(private http: HttpClient) { }
 
+    createProfile(): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}/profile`, {});
+    }
+
   }

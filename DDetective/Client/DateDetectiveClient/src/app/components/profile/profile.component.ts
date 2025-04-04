@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class ProfileComponent implements OnInit{
   profileForm!: FormGroup;
   appName = 'DateDetective';
+  //profileId = '';
 
   constructor(
     private fb: FormBuilder, 
@@ -27,5 +28,22 @@ export class ProfileComponent implements OnInit{
 
   ngOnInit(): void {
     //throw new Error('Method not implemented.');
+  }
+
+  onCreateProfile(): void {
+    this.profileService.createProfile().subscribe(
+      (profileData: any) => {
+        console.log('Profile created:', profileData);
+        console.log('Profile ID:', profileData.profileId);
+      
+        const profileId = profileData.profileId;
+        
+        // Update the form control and display the token
+        this.profileForm.patchValue({
+          profileId: profileId
+        });
+        alert(`Profile ID#: ${profileId}`);
+      }
+    );
   }
 }
