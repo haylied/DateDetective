@@ -17,7 +17,7 @@ namespace DDetective.Services
 
         public Repo(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("PostgresConnection");
+            _connectionString = Environment.GetEnvironmentVariable("DD_PostgresConnection");
         }
 
         public NpgsqlConnection Connection => new NpgsqlConnection(_connectionString);
